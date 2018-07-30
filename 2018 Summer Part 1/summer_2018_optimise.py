@@ -2,6 +2,7 @@ from scipy import optimize
 import numpy
 from collections import OrderedDict
 import json
+import typing
 
 required_materials = {
     'water': 0,
@@ -66,7 +67,16 @@ materials_per_run = OrderedDict((
     ('mountains', drops('mountains', wood=2+w, stone=2, iron=2)),
 ))
 
-def ap_required(params, log=False):
+'''Returns the AP required to obtain the required materials, assuming quests
+are done in the ratio specified in `params`.
+
+`params` is a tuple representing the ratio in which the nodes will be farmed.
+It must have the same dimension as the specified farming locations.
+
+Returns:
+    float -- Decimal AP required.
+'''
+def ap_required(params: typing.Tuple[float, ...], log=False) -> float:
     ratios = {}
     for i, loc in enumerate(materials_per_run):
         ratios[loc] = params[i]
