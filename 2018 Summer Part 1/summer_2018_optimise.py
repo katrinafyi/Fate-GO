@@ -1,9 +1,7 @@
-from scipy import optimize
+import scipy.optimize
 import numpy
 from collections import OrderedDict
 import json
-import typing
-import types
 
 class Items(dict):
     def __init__(self, water=0, food=0, wood=0, stone=0, iron=0):
@@ -21,15 +19,15 @@ class Items(dict):
 class EventOptimiser:
 
     def __init__(self):
-        self._required = Items()
+        self._remaining = Items()
         self._target = Items()
         self._current = Items()
         self._farming_nodes = OrderedDict()
 
     def _update_required(self):
-        self._required.clear()
+        self._remaining.clear()
         for mat, num in self._target.items():
-            self._required[mat] = max(num - self._current[mat], 0)
+            self._remaining[mat] = max(num - self._current[mat], 0)
 
     def set_target(self, items: Items):
         self._target = items
@@ -43,22 +41,27 @@ class EventOptimiser:
         self._farming_nodes = nodes
 
     def _runs_required(self, node_ratios):
+        assert len(node_ratios) == len(self._farming_nodes)
+
         ratios = self._to_dict(node_ratios)
         drops_per_iteration = self.total_items(ratios)
 
         required_iterations = 0
         for mat, drops_per_iter in drops_per_iteration.items():
-            multiplier = self._required[mat] / drops_per_iter
+            multiplier = self._remaining[mat] / drops_per_iter
             if multiplier > required_iterations:
                 required_iterations = multiplier
 
         return [required_iterations*x for x in node_ratios]
 
     def _ap_required(self, node_ratios):
+        assert len(node_ratios) == len(self._farming_nodes)
+
         runs = self._runs_required(node_ratios)
         return 40*sum(runs)
 
     def _to_dict(self, array):
+        assert len(array) == len(self._farming_nodes)
         d = {}
         for i, key in enumerate(self._farming_nodes):
             d[key] = array[i]
@@ -66,8 +69,8 @@ class EventOptimiser:
 
     def _do_optimise(self):
         n = len(self._farming_nodes)
-        bounds = optimize.Bounds([0]*n, [numpy.inf]*n, True)
-        return optimize.minimize(self._ap_required, [10]*n, 
+        bounds = scipy.optimize.Bounds([0]*n, [numpy.inf]*n, True)
+        return scipy.optimize.minimize(self._ap_required, [10]*n, 
             method='SLSQP', bounds=bounds)
 
     def optimise_runs(self):
@@ -109,6 +112,7 @@ def _main():
     summertime_mistresses = s = 4
     wood_ces = w = 1
 
+
     nodes = OrderedDict((
         # assuming +6 bonus on each single material, and +2 of each for mountains.
         ('beach', data.drops('beach storm', water=6+s, food=0+s)),
@@ -137,12 +141,11 @@ def _main():
     event_opt.set_farming_nodes(nodes)
 
     runs = event_opt.optimise_runs()
-    print(runs)
-    print('Required AP:', 40*sum(runs.values()))
-    print()
-    print('Materials')
-    print(event_opt._required)
-    print(event_opt.total_items(runs))
+    print(json.encoder.JSONEncoder(indent=4).encode({
+        'ap': 40*sum(runs.values()),
+        'runs': runs
+    }))
+    
 
 if __name__ == '__main__':
     _main()
