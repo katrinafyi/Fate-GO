@@ -44,10 +44,10 @@ class EventOptimiser:
 
     def _runs_required(self, node_ratios):
         ratios = self._to_dict(node_ratios)
-        materials_per_iteration = self.total_materials(ratios)
+        drops_per_iteration = self.total_items(ratios)
 
         required_iterations = 0
-        for mat, drops_per_iter in materials_per_iteration.items():
+        for mat, drops_per_iter in drops_per_iteration.items():
             multiplier = self._required[mat] / drops_per_iter
             if multiplier > required_iterations:
                 required_iterations = multiplier
@@ -74,14 +74,14 @@ class EventOptimiser:
         result = self._do_optimise()
         return self._to_dict(self._runs_required(result.x))
 
-    def total_materials(self, nodes_farmed):
-        mats = {}
+    def total_items(self, nodes_farmed):
+        total = {}
         for loc, times in nodes_farmed.items():
             for mat, mat_drops in self._farming_nodes[loc].items():
-                if mat not in mats:
-                    mats[mat] = 0
-                mats[mat] += times * mat_drops
-        return mats
+                if mat not in total:
+                    total[mat] = 0
+                total[mat] += times * mat_drops
+        return total
 
 class DropsData: 
     def __init__(self, data):
@@ -142,7 +142,7 @@ def _main():
     print()
     print('Materials')
     print(event_opt._required)
-    print(event_opt.total_materials(runs))
+    print(event_opt.total_items(runs))
 
 if __name__ == '__main__':
     _main()
