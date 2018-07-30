@@ -17,25 +17,24 @@ class Items(dict):
         super().__init__(mapping)
 
 class EventOptimiser:
-
     def __init__(self):
         self._remaining = Items()
         self._target = Items()
         self._current = Items()
         self._farming_nodes = OrderedDict()
 
-    def _update_required(self):
+    def _update_remaining(self):
         self._remaining.clear()
         for mat, num in self._target.items():
             self._remaining[mat] = max(num - self._current[mat], 0)
 
     def set_target(self, items: Items):
         self._target = items
-        self._update_required()
+        self._update_remaining()
 
     def set_current(self, items: Items):
         self._current = items
-        self._update_required()
+        self._update_remaining()
 
     def set_farming_nodes(self, nodes):
         self._farming_nodes = nodes
@@ -75,6 +74,7 @@ class EventOptimiser:
 
     def optimise_runs(self):
         result = self._do_optimise()
+        print(result)
         return self._to_dict(self._runs_required(result.x))
 
     def total_items(self, nodes_farmed):
@@ -109,9 +109,8 @@ def _main():
         raw_data = json.decoder.JSONDecoder().decode(f.read())
     data = DropsData(raw_data)
 
-    summertime_mistresses = s = 4
+    summertime_mistresses = s = 5
     wood_ces = w = 1
-
 
     nodes = OrderedDict((
         # assuming +6 bonus on each single material, and +2 of each for mountains.
@@ -126,26 +125,26 @@ def _main():
     event_opt = EventOptimiser()
     event_opt.set_current(Items(
         water=440,
-        food=769,
+        food=825,
         wood=28,
-        stone=110,
-        iron=409
+        stone=242,
+        iron=109
     ))
     event_opt.set_target(Items(
         water=1100,
         food=2800,
         wood=300,
         stone=2800,
-        iron=1700
+        iron=1400
     ))
     event_opt.set_farming_nodes(nodes)
 
     runs = event_opt.optimise_runs()
+    print(event_opt._remaining)
     print(json.encoder.JSONEncoder(indent=4).encode({
+        'runs': runs,
         'ap': 40*sum(runs.values()),
-        'runs': runs
     }))
-    
 
 if __name__ == '__main__':
     _main()
