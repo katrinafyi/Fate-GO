@@ -1,7 +1,8 @@
-import scipy.optimize
-import numpy
 from collections import OrderedDict
 import json
+
+from ortools.linear_solver import pywraplp
+
 
 class Items(dict):
     def __init__(self, water=0, food=0, wood=0, stone=0, iron=0):
@@ -67,27 +68,38 @@ class EventOptimiser:
         return d
 
     def _do_optimise(self):
+        solver = pywraplp.Solver('SolveIntegerProblem', 
+            pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
+
+        node_vars = []
+        for loc in self._farming_nodes:
+            node_vars.append(solver.IntVar(0, solver.infinity(), loc))
+
         n = len(self._farming_nodes)
 
-        constraints = OrderedDict()
+        constraints = {}
         for i, drops in enumerate(self._farming_nodes.values()):
             for material, number in drops.items():
                 if material not in constraints:
-                    constraints[material] = [0] * n
-                constraints[material][i] = -number
-        
-        A_ub = numpy.array(list(constraints.values()))
+                    constraints[material] = solver.Constraint(
+                        self._remaining[material], solver.infinity())
+                    
+                constraints[material].SetCoefficient(node_vars[i], number)
 
-        b_ub = numpy.array([-self._remaining[mat] for mat in constraints])
+        objective = solver.Objective()
+        for var in node_vars:
+            objective.SetCoefficient(var, 1)
+        objective.SetMinimization()
 
-        c = [1] * n
+        status = solver.Solve()
+        assert status == pywraplp.Solver.OPTIMAL
+        assert solver.VerifySolution(1e-7, True)
         
-        return scipy.optimize.linprog(c, A_ub, b_ub)
+        return [var.solution_value() for var in node_vars]
 
     def optimise_runs(self):
         result = self._do_optimise()
-        print(result)
-        return self._to_dict(self._runs_required(result.x))
+        return self._to_dict(result)
 
     def total_items(self, nodes_farmed):
         total = {}
@@ -152,11 +164,13 @@ def _main():
     event_opt.set_farming_nodes(nodes)
 
     runs = event_opt.optimise_runs()
-    print(event_opt._remaining)
     print(json.encoder.JSONEncoder(indent=4).encode({
+        'remaining': event_opt._remaining,
         'runs': runs,
         'ap': 40*sum(runs.values()),
     }))
+
+
 
 if __name__ == '__main__':
     _main()
