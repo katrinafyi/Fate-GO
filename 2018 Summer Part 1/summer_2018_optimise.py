@@ -68,9 +68,21 @@ class EventOptimiser:
 
     def _do_optimise(self):
         n = len(self._farming_nodes)
-        bounds = scipy.optimize.Bounds([0]*n, [numpy.inf]*n, True)
-        return scipy.optimize.minimize(self._ap_required, [10]*n, 
-            method='SLSQP', bounds=bounds)
+
+        constraints = OrderedDict()
+        for i, drops in enumerate(self._farming_nodes.values()):
+            for material, number in drops.items():
+                if material not in constraints:
+                    constraints[material] = [0] * n
+                constraints[material][i] = -number
+        
+        A_ub = numpy.array(list(constraints.values()))
+
+        b_ub = numpy.array([-self._remaining[mat] for mat in constraints])
+
+        c = [1] * n
+        
+        return scipy.optimize.linprog(c, A_ub, b_ub)
 
     def optimise_runs(self):
         result = self._do_optimise()
