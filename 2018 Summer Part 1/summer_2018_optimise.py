@@ -1,5 +1,6 @@
 from collections import OrderedDict
 import json
+import os
 
 from ortools.linear_solver import pywraplp
 
@@ -128,8 +129,18 @@ class DropsData:
                     'Servant/CE warning: You have a '+item+' bonus but '+location+' does not drop '+item+'!')
         return drops
 
+    def best(location, supports=None, servants=None, craft_essences=None):
+        if supports is None:
+            supports = []
+        if servants is None: 
+            servants = []
+        if craft_essences is None:
+            craft_essences = []
+        
+
 def _main():
-    with open('2018 Summer Part 1/currency_drops_parsed.json') as f:
+    os.chdir(os.path.dirname(__file__))
+    with open('currency_drops_parsed.json') as f:
         raw_data = json.decoder.JSONDecoder().decode(f.read())
     data = DropsData(raw_data)
 
@@ -148,27 +159,25 @@ def _main():
 
     event_opt = EventOptimiser()
     event_opt.set_current(Items(
-        water=440,
-        food=825,
-        wood=28,
-        stone=242,
-        iron=109
+        *(int(x) for x in ('482 874 40 377 482'.split(' ')))
     ))
     event_opt.set_target(Items(
-        water=1100,
-        food=2800,
-        wood=300,
-        stone=2800,
-        iron=1400
+        *(int(x) for x in ('1100 2800 300 2800 1600'.split(' ')))
     ))
     event_opt.set_farming_nodes(nodes)
 
     runs = event_opt.optimise_runs()
-    print(json.encoder.JSONEncoder(indent=4).encode({
+    result_text = json.encoder.JSONEncoder(indent=4).encode({
+        'current': event_opt._current,
+        'total_required': event_opt._target,
         'remaining': event_opt._remaining,
         'runs': runs,
         'ap': 40*sum(runs.values()),
-    }))
+    })
+    print(result_text)
+
+    with open('summer_2018_optimised.json', 'w') as f:
+        f.write(result_text)
 
 
 
