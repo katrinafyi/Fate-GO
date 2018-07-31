@@ -95,26 +95,6 @@ class EventOptimiser:
     def set_farming_nodes(self, nodes):
         self._farming_nodes = nodes
 
-    def _runs_required(self, node_ratios):
-        assert len(node_ratios) == len(self._farming_nodes)
-
-        ratios = self._to_dict(node_ratios)
-        drops_per_iteration = self.total_items(ratios)
-
-        required_iterations = 0
-        for mat, drops_per_iter in drops_per_iteration.items():
-            multiplier = self._remaining[mat] / drops_per_iter
-            if multiplier > required_iterations:
-                required_iterations = multiplier
-
-        return [required_iterations*x for x in node_ratios]
-
-    def _ap_required(self, node_ratios):
-        assert len(node_ratios) == len(self._farming_nodes)
-
-        runs = self._runs_required(node_ratios)
-        return 40*sum(runs)
-
     def _to_dict(self, array):
         assert len(array) == len(self._farming_nodes)
         d = OrderedDict()
@@ -158,8 +138,6 @@ class EventOptimiser:
         total = Items()
         for loc, times in nodes_farmed.items():
             for mat, mat_drops in self._farming_nodes[loc].items():
-                if mat not in total:
-                    total[mat] = 0
                 total[mat] += times * mat_drops
         return total
 
