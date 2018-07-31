@@ -18,9 +18,13 @@ def main():
             elif s[0]:
                 if s[0] not in locations:
                     locations[s[0]] = {}
-                locations[s[0]][current_mat.lower()] = [float(x) for x in s[1:]]
+                drops = [float(x) for x in s[1:]]
+                locations[s[0]][current_mat.lower()] = {
+                    'initial': drops[0],
+                    'stacks': round(drops[1] - drops[0], 5)
+                }
     
-    with open('currency_drops_parsed.json', 'w') as f:
+    with open('currency_drops_parsed_2.json', 'w') as f:
         f.write(json.encoder.JSONEncoder(indent=2)
             .encode(locations)
             )

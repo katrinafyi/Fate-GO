@@ -1,0 +1,422 @@
+{
+  "beach beginner": {
+    "water": {
+      "initial": 1.2,
+      "stacks": 1.2
+    },
+    "food": {
+      "initial": 0.7,
+      "stacks": 0.7
+    }
+  },
+  "beach intermediate": {
+    "water": {
+      "initial": 6.7,
+      "stacks": 3.35
+    },
+    "food": {
+      "initial": 2.85,
+      "stacks": 2.25
+    }
+  },
+  "beach advanced": {
+    "water": {
+      "initial": 8.95,
+      "stacks": 4.475
+    },
+    "food": {
+      "initial": 4.4,
+      "stacks": 3.075
+    }
+  },
+  "beach expert": {
+    "water": {
+      "initial": 22.0,
+      "stacks": 6.6
+    },
+    "food": {
+      "initial": 9.6,
+      "stacks": 4.8
+    }
+  },
+  "beach thunder": {
+    "water": {
+      "initial": 21.9,
+      "stacks": 7.2
+    },
+    "food": {
+      "initial": 9.4,
+      "stacks": 4.6
+    }
+  },
+  "beach storm": {
+    "water": {
+      "initial": 36.8,
+      "stacks": 11.6
+    },
+    "food": {
+      "initial": 14.4,
+      "stacks": 6.8
+    }
+  },
+  "iron beginner": {
+    "water": {
+      "initial": 0.9,
+      "stacks": 0.9
+    }
+  },
+  "iron intermediate": {
+    "water": {
+      "initial": 2.0,
+      "stacks": 2.0
+    }
+  },
+  "iron advanced": {
+    "water": {
+      "initial": 3.075,
+      "stacks": 3.075
+    }
+  },
+  "iron expert": {
+    "water": {
+      "initial": 7.5,
+      "stacks": 5.1
+    }
+  },
+  "iron thunder": {
+    "water": {
+      "initial": 12.8,
+      "stacks": 6.4
+    }
+  },
+  "iron storm": {
+    "water": {
+      "initial": 16.1,
+      "stacks": 8.05
+    }
+  },
+  "forest beginner": {
+    "water": {
+      "initial": 0.7,
+      "stacks": 0.7
+    },
+    "food": {
+      "initial": 1.1,
+      "stacks": 1.1
+    }
+  },
+  "forest intermediate": {
+    "water": {
+      "initial": 3.8,
+      "stacks": 1.9
+    },
+    "food": {
+      "initial": 5.16,
+      "stacks": 2.58
+    }
+  },
+  "forest advanced": {
+    "water": {
+      "initial": 6.4,
+      "stacks": 3.2
+    },
+    "food": {
+      "initial": 9.04,
+      "stacks": 4.52
+    }
+  },
+  "forest expert": {
+    "water": {
+      "initial": 15.6,
+      "stacks": 5.2
+    },
+    "food": {
+      "initial": 24.0,
+      "stacks": 7.2
+    }
+  },
+  "forest thunder": {
+    "water": {
+      "initial": 22.5,
+      "stacks": 7.5
+    },
+    "food": {
+      "initial": 35.5,
+      "stacks": 10.9
+    }
+  },
+  "forest storm": {
+    "water": {
+      "initial": 18.6,
+      "stacks": 6.2
+    },
+    "food": {
+      "initial": 43.2,
+      "stacks": 11.3
+    }
+  },
+  "jungle beginner": {
+    "food": {
+      "initial": 0.9,
+      "stacks": 0.9
+    },
+    "wood": {
+      "initial": 1.2,
+      "stacks": 1.2
+    }
+  },
+  "jungle intermediate": {
+    "food": {
+      "initial": 2.0,
+      "stacks": 2.0
+    },
+    "wood": {
+      "initial": 2.7,
+      "stacks": 2.7
+    }
+  },
+  "jungle advanced": {
+    "food": {
+      "initial": 3.075,
+      "stacks": 3.075
+    },
+    "wood": {
+      "initial": 8.6,
+      "stacks": 4.3
+    }
+  },
+  "jungle expert": {
+    "food": {
+      "initial": 6.55,
+      "stacks": 5.05
+    },
+    "wood": {
+      "initial": 20.4,
+      "stacks": 7.2
+    }
+  },
+  "jungle thunder": {
+    "food": {
+      "initial": 12.6,
+      "stacks": 6.3
+    },
+    "wood": {
+      "initial": 24.0,
+      "stacks": 9.0
+    }
+  },
+  "jungle storm": {
+    "food": {
+      "initial": 15.8,
+      "stacks": 7.9
+    },
+    "wood": {
+      "initial": 43.2,
+      "stacks": 10.8
+    }
+  },
+  "field beginner": {
+    "food": {
+      "initial": 0.9,
+      "stacks": 0.9
+    },
+    "stone": {
+      "initial": 1.2,
+      "stacks": 1.2
+    }
+  },
+  "field intermediate": {
+    "food": {
+      "initial": 1.725,
+      "stacks": 1.725
+    },
+    "stone": {
+      "initial": 2.325,
+      "stacks": 2.325
+    }
+  },
+  "field advanced": {
+    "food": {
+      "initial": 3.075,
+      "stacks": 3.075
+    },
+    "stone": {
+      "initial": 8.6,
+      "stacks": 4.3
+    }
+  },
+  "field expert": {
+    "food": {
+      "initial": 7.5,
+      "stacks": 5.1
+    },
+    "stone": {
+      "initial": 22.4,
+      "stacks": 7.2
+    }
+  },
+  "field thunder": {
+    "food": {
+      "initial": 12.8,
+      "stacks": 6.4
+    },
+    "stone": {
+      "initial": 26.4,
+      "stacks": 9.2
+    }
+  },
+  "field storm": {
+    "food": {
+      "initial": 16.1,
+      "stacks": 8.05
+    },
+    "stone": {
+      "initial": 44.0,
+      "stacks": 11.0
+    }
+  },
+  "cavern beginner": {
+    "iron": {
+      "initial": 1.2,
+      "stacks": 1.2
+    },
+    "water": {
+      "initial": 0.9,
+      "stacks": 0.9
+    }
+  },
+  "cavern intermediate": {
+    "iron": {
+      "initial": 2.7,
+      "stacks": 2.7
+    },
+    "water": {
+      "initial": 2.0,
+      "stacks": 2.0
+    }
+  },
+  "cavern advanced": {
+    "iron": {
+      "initial": 8.6,
+      "stacks": 4.3
+    },
+    "water": {
+      "initial": 3.075,
+      "stacks": 3.075
+    }
+  },
+  "cavern expert": {
+    "iron": {
+      "initial": 22.4,
+      "stacks": 7.2
+    },
+    "water": {
+      "initial": 7.5,
+      "stacks": 5.1
+    }
+  },
+  "cavern thunder": {
+    "iron": {
+      "initial": 25.6,
+      "stacks": 8.8
+    },
+    "water": {
+      "initial": 12.8,
+      "stacks": 6.4
+    }
+  },
+  "cavern storm": {
+    "iron": {
+      "initial": 44.0,
+      "stacks": 11.0
+    },
+    "water": {
+      "initial": 16.1,
+      "stacks": 8.05
+    }
+  },
+  "mountains beginner": {
+    "iron": {
+      "initial": 1.08,
+      "stacks": 1.08
+    },
+    "stone": {
+      "initial": 1.08,
+      "stacks": 1.08
+    },
+    "wood": {
+      "initial": 1.08,
+      "stacks": 1.08
+    }
+  },
+  "mountains intermediate": {
+    "iron": {
+      "initial": 2.35,
+      "stacks": 2.35
+    },
+    "stone": {
+      "initial": 2.35,
+      "stacks": 2.35
+    },
+    "wood": {
+      "initial": 2.35,
+      "stacks": 2.35
+    }
+  },
+  "mountains advanced": {
+    "iron": {
+      "initial": 7.6,
+      "stacks": 3.8
+    },
+    "stone": {
+      "initial": 7.6,
+      "stacks": 3.8
+    },
+    "wood": {
+      "initial": 7.6,
+      "stacks": 3.8
+    }
+  },
+  "mountains expert": {
+    "iron": {
+      "initial": 17.328,
+      "stacks": 5.332
+    },
+    "stone": {
+      "initial": 17.328,
+      "stacks": 5.332
+    },
+    "wood": {
+      "initial": 17.328,
+      "stacks": 5.332
+    }
+  },
+  "mountains thunder": {
+    "iron": {
+      "initial": 20.628,
+      "stacks": 6.432
+    },
+    "stone": {
+      "initial": 20.628,
+      "stacks": 6.432
+    },
+    "wood": {
+      "initial": 20.628,
+      "stacks": 6.432
+    }
+  },
+  "mountains storm": {
+    "iron": {
+      "initial": 24.642,
+      "stacks": 7.659
+    },
+    "stone": {
+      "initial": 24.642,
+      "stacks": 7.659
+    },
+    "wood": {
+      "initial": 24.642,
+      "stacks": 7.659
+    }
+  }
+}
