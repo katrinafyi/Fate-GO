@@ -1,22 +1,61 @@
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 import json
 import os
+from typing import Union
 
 from ortools.linear_solver import pywraplp
 
+_json_encoder = json.encoder.JSONEncoder(indent=2)
 
-class Items(dict):
-    def __init__(self, water=0, food=0, wood=0, stone=0, iron=0):
-        mapping = {
-            'water': water,
-            'food': food,
-            'wood': wood,
-            'stone': stone,
-            'iron': iron
-        }
-        for k, v in mapping.items():
-            setattr(self, k, v)
-        super().__init__(mapping)
+def _json(obj):
+    return _json_encoder.encode(obj)
+
+class Items(defaultdict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(lambda: 0, *args, **kwargs)
+
+    def __add__(self, other):
+        result = Items()
+        for key in self:
+            result[key] += self[key]
+        for key in other:
+            result[key] += other[key]
+        return result
+
+    def __neg__(self):
+        result = Items()
+        for key in self:
+            result[key] = -self[key]
+        return result
+
+    def __sub__(self, other):
+        return self + (-other)
+
+    def __repr__(self):
+        return self.__class__.__name__+'('+', '.join(
+            x+'='+repr(y) for (x, y) in self.items() if y != 0) + ')'
+
+class PartySetup(dict):
+    def __init__(self, servants, craft_essences, support):
+        self['servants'] = servants
+        self['craft_essences'] = craft_essences
+        self['support'] = support
+
+    @property
+    def servants(self):
+        return self['servants']
+
+    @property
+    def craft_essences(self):
+        return self['craft_essences']
+
+    @property
+    def support(self):
+        return self['support']
+
+    def total_bonus(self):
+        return sum(self.servants + self.craft_essences + self.support, Items())
+
 
 class EventOptimiser:
     def __init__(self):
@@ -63,7 +102,7 @@ class EventOptimiser:
 
     def _to_dict(self, array):
         assert len(array) == len(self._farming_nodes)
-        d = {}
+        d = OrderedDict()
         for i, key in enumerate(self._farming_nodes):
             d[key] = array[i]
         return d
@@ -103,7 +142,7 @@ class EventOptimiser:
         return self._to_dict(result)
 
     def total_items(self, nodes_farmed):
-        total = {}
+        total = Items()
         for loc, times in nodes_farmed.items():
             for mat, mat_drops in self._farming_nodes[loc].items():
                 if mat not in total:
@@ -115,66 +154,127 @@ class DropsData:
     def __init__(self, data):
         self._data = data
 
-    def drops(self, location, bonuses: Items=None, **kwargs):
+    def drops(self, location, bonuses_or_party: Union[Items, PartySetup]=None, **kwargs):
         location_drops = self._data[location]
-        drops = {}
-        if bonuses is None:
-            bonuses = Items(**kwargs)
+        drops = Items()
+        if bonuses_or_party is None:
+            bonuses_or_party = Items(kwargs)
+        if isinstance(bonuses_or_party, PartySetup):
+            bonuses_or_party = bonuses_or_party.total_bonus()
 
-        for item, bonus in bonuses.items():
-            if item in location_drops:
-                drops[item] = location_drops[item][bonus]
-            elif bonus != 0:
-                raise Warning(
-                    'Servant/CE warning: You have a '+item+' bonus but '+location+' does not drop '+item+'!')
+        for item, item_drops in location_drops.items():
+            drops[item] = item_drops['initial'] + bonuses_or_party[item] * item_drops['stacks']
+
+        
         return drops
 
-    def best(location, supports=None, servants=None, craft_essences=None):
+    def stacks(self, location):
+        ret = {}
+        for item, item_data in self._data[location].items():
+            ret[item] = item_data['stacks']
+        return Items(ret)
+
+    def best_party(self, location, servants=None, craft_essences=None, supports=None, priorities=None):
         if supports is None:
             supports = []
         if servants is None: 
             servants = []
         if craft_essences is None:
             craft_essences = []
+        if priorities is None:
+            stacks = self.stacks(location)
+            priorities = list(sorted(self.drops(location),
+                key=lambda x: stacks[x], reverse=True))
         
+        for p in reversed(priorities):
+            servants.sort(key=lambda x: x[p], reverse=True)
+            supports.sort(key=lambda x: x[p], reverse=True)
+            craft_essences.sort(key=lambda x: x[p], reverse=True)
+
+        out = [[], [], []]
+
+        for i, domain in enumerate((servants, craft_essences, supports)):
+            for ent in domain:
+                if any(ent[p] != 0 for p in priorities):
+                    out[i].append(ent)
+
+        return PartySetup(
+            servants=out[0][:5],
+            craft_essences=out[1][:5],
+            support=out[2][:1]
+        )
 
 def _main():
     os.chdir(os.path.dirname(__file__))
-    with open('currency_drops_parsed.json') as f:
+    with open('currency_drops_parsed_2.json') as f:
         raw_data = json.decoder.JSONDecoder().decode(f.read())
     data = DropsData(raw_data)
 
+    my_servants = [
+        Items(food=1), 
+        Items(water=1),
+        Items(wood=1),
+        Items(stone=1),
+        Items(iron=1)
+    ]*6
+
+    my_ces = [Items(food=1, water=1)] * 5 + [Items(wood=1)]
+
+    available_supports = [
+        Items(food=2, water=1), 
+        Items(water=2, food=1),
+        Items(wood=2),
+        Items(stone=2),
+        Items(iron=2)
+    ]
+    
     summertime_mistresses = s = 5
     wood_ces = w = 1
 
-    nodes = OrderedDict((
-        # assuming +6 bonus on each single material, and +2 of each for mountains.
-        ('beach', data.drops('beach storm', water=6+s, food=0+s)),
-        ('forest', data.drops('forest storm', food=6+s, water=0+s)), # Primeval Forest
-        ('jungle', data.drops('jungle storm', wood=6+w, food=0+s)), # Jungle
-        ('field', data.drops('field storm', stone=6, food=0+s)), # Grassfields
-        ('cave', data.drops('cavern storm', iron=6, water=0+s)),
-        ('mountains', data.drops('mountains storm', wood=2+w, stone=2, iron=2)),
-    ))
+    locations = ['beach', 'forest', 'jungle', 'field', 'cavern']
+
+    parties = OrderedDict()
+
+    nodes = OrderedDict()
+    for loc in locations:
+        full_loc = loc + ' storm'
+        p = data.best_party(full_loc, my_servants, my_ces, 
+            available_supports)
+        nodes[loc] = data.drops(full_loc, p)
+        parties[loc] = p
+    nodes['mountains'] = data.drops('mountains storm', Items(wood=3, stone=2, iron=2))
+    print(nodes)
 
     event_opt = EventOptimiser()
     event_opt.set_current(Items(
-        *(int(x) for x in ('482 874 40 377 482'.split(' ')))
+        water=482,
+        food=923,
+        wood=40,
+        stone=498,
+        iron=482
     ))
     event_opt.set_target(Items(
-        *(int(x) for x in ('1100 2800 300 2800 1600'.split(' ')))
+        water=1100,
+        food=2800,
+        wood=300,
+        stone=2800,
+        iron=1600
     ))
     event_opt.set_farming_nodes(nodes)
 
     runs = event_opt.optimise_runs()
-    result_text = json.encoder.JSONEncoder(indent=4).encode({
+    result_text = _json({
+        'party_setups': parties,
         'current': event_opt._current,
         'total_required': event_opt._target,
         'remaining': event_opt._remaining,
         'runs': runs,
         'ap': 40*sum(runs.values()),
     })
-    print(result_text)
+    print(_json({
+        'runs': runs,
+        'ap': 40*sum(runs.values()),
+    }))
 
     with open('summer_2018_optimised.json', 'w') as f:
         f.write(result_text)

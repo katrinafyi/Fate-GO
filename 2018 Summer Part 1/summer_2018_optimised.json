@@ -1,32 +1,459 @@
 {
-    "current": {
-        "water": 482,
-        "food": 874,
-        "wood": 40,
-        "stone": 377,
-        "iron": 482
+  "party_setups": {
+    "beach": {
+      "servants": [
+        {
+          "water": 1,
+          "food": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "water": 1,
+          "food": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "water": 1,
+          "food": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "water": 1,
+          "food": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "water": 1,
+          "food": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ],
+      "craft_essences": [
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ],
+      "support": [
+        {
+          "water": 2,
+          "food": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ]
     },
-    "total_required": {
-        "water": 1100,
-        "food": 2800,
-        "wood": 300,
-        "stone": 2800,
-        "iron": 1600
+    "forest": {
+      "servants": [
+        {
+          "food": 1,
+          "water": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 0,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ],
+      "craft_essences": [
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ],
+      "support": [
+        {
+          "food": 2,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ]
     },
-    "remaining": {
-        "water": 618,
-        "food": 1926,
-        "wood": 260,
-        "stone": 2423,
-        "iron": 1118
+    "jungle": {
+      "servants": [
+        {
+          "wood": 1,
+          "food": 0,
+          "water": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "wood": 1,
+          "food": 0,
+          "water": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "wood": 1,
+          "food": 0,
+          "water": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "wood": 1,
+          "food": 0,
+          "water": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "wood": 1,
+          "food": 0,
+          "water": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ],
+      "craft_essences": [
+        {
+          "wood": 1,
+          "food": 0,
+          "water": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ],
+      "support": [
+        {
+          "wood": 2,
+          "food": 0,
+          "water": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ]
     },
-    "runs": {
-        "beach": 0.0,
-        "forest": 5.0,
-        "jungle": 0.0,
-        "field": 20.0,
-        "cave": 8.0,
-        "mountains": 6.0
+    "field": {
+      "servants": [
+        {
+          "stone": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "iron": 0
+        },
+        {
+          "stone": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "iron": 0
+        },
+        {
+          "stone": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "iron": 0
+        },
+        {
+          "stone": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "iron": 0
+        },
+        {
+          "stone": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "iron": 0
+        }
+      ],
+      "craft_essences": [
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ],
+      "support": [
+        {
+          "stone": 2,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "iron": 0
+        }
+      ]
     },
-    "ap": 1560.0
+    "cavern": {
+      "servants": [
+        {
+          "iron": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "stone": 0
+        },
+        {
+          "iron": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "stone": 0
+        },
+        {
+          "iron": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "stone": 0
+        },
+        {
+          "iron": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "stone": 0
+        },
+        {
+          "iron": 1,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "stone": 0
+        }
+      ],
+      "craft_essences": [
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        },
+        {
+          "food": 1,
+          "water": 1,
+          "wood": 0,
+          "stone": 0,
+          "iron": 0
+        }
+      ],
+      "support": [
+        {
+          "iron": 2,
+          "food": 0,
+          "water": 0,
+          "wood": 0,
+          "stone": 0
+        }
+      ]
+    }
+  },
+  "current": {
+    "water": 482,
+    "food": 923,
+    "wood": 40,
+    "stone": 498,
+    "iron": 482
+  },
+  "total_required": {
+    "water": 1100,
+    "food": 2800,
+    "wood": 300,
+    "stone": 2800,
+    "iron": 1600
+  },
+  "remaining": {
+    "water": 618,
+    "food": 1877,
+    "wood": 260,
+    "stone": 2302,
+    "iron": 1118
+  },
+  "runs": {
+    "beach": 0.0,
+    "forest": 4.0,
+    "jungle": 2.0,
+    "field": 19.0,
+    "cavern": 9.0,
+    "mountains": 1.0
+  },
+  "ap": 1400.0
 }
