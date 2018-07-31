@@ -5,11 +5,6 @@ from typing import Union
 
 from ortools.linear_solver import pywraplp
 
-_json_encoder = json.encoder.JSONEncoder(indent=2)
-
-def _json(obj):
-    return _json_encoder.encode(obj)
-
 class Items(defaultdict):
     def __init__(self, *args, **kwargs):
         super().__init__(lambda: 0, *args, **kwargs)
@@ -195,6 +190,11 @@ class DropsData:
         )
 
 def _main():
+    _json_encoder = json.encoder.JSONEncoder(indent=2)
+
+    def _json(obj):
+        return _json_encoder.encode(obj)
+
     os.chdir(os.path.dirname(__file__))
     with open('currency_drops_parsed_2.json') as f:
         raw_data = json.decoder.JSONDecoder().decode(f.read())
