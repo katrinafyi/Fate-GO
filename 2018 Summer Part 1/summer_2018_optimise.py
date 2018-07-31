@@ -208,7 +208,10 @@ def _main():
         Items(iron=1)
     ]*6
 
-    my_ces = [Items(food=1, water=1)] * 5 + [Items(wood=1)]
+    summertime_mistresses = s = 5
+    wood_ces = w = 1
+
+    my_ces = [Items(food=1, water=1)] * s + [Items(wood=1)] * w
 
     available_supports = [
         Items(food=2, water=1), 
@@ -218,8 +221,7 @@ def _main():
         Items(iron=2)
     ]
 
-    summertime_mistresses = s = 5
-    wood_ces = w = 1
+    
 
     locations = ['beach storm', 'forest storm', 
         'jungle storm', 'field storm', 'cavern storm']
@@ -245,14 +247,14 @@ def _main():
         food=979,
         wood=40,
         stone=641,
-        iron=482
+        iron=402
     ))
     event_opt.set_target(Items(
         water=1100,
         food=2800,
         wood=300,
         stone=2800,
-        iron=1600
+        iron=1600-80
     ))
     event_opt.set_farming_nodes(drops_per_run)
 
@@ -274,6 +276,7 @@ def _main():
     print(_json({
         'runs': runs,
         'ap': 40*sum(runs.values()),
+        'total_runs': sum(runs.values())
     }))
 
     with open('summer_2018_optimised.json', 'w') as f:

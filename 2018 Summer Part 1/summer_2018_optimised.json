@@ -115,14 +115,14 @@
     "food": 979,
     "wood": 40,
     "stone": 641,
-    "iron": 482
+    "iron": 402
   },
   "total_required": {
     "water": 1100,
     "food": 2800,
     "wood": 300,
     "stone": 2800,
-    "iron": 1600
+    "iron": 1520
   },
   "remaining": {
     "water": 618,
