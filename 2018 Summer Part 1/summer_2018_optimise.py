@@ -35,8 +35,23 @@ class Items(defaultdict):
         return self.__class__.__name__+'('+', '.join(
             x+'='+repr(y) for (x, y) in self.items() if y != 0) + ')'
 
+    def non_zero(self):
+        return any(x for x in self.values())
+
+    def friendly_name(self):
+        bonus_strings = ['+'+str(n)+' '+x for x, n in self.items() if n != 0]
+        if not bonus_strings:
+            return 'No event bonuses.'
+        return ', '.join(bonus_strings)
+
 class PartySetup(dict):
-    def __init__(self, servants, craft_essences, support):
+    def __init__(self, servants=None, craft_essences=None, support=None):
+        if servants is None:
+            servants = Items()
+        if craft_essences is None:
+            craft_essences = Items()
+        if support is None:
+            support = Items()
         self['servants'] = servants
         self['craft_essences'] = craft_essences
         self['support'] = support
@@ -115,8 +130,6 @@ class EventOptimiser:
         for loc in self._farming_nodes:
             node_vars.append(solver.IntVar(0, solver.infinity(), loc))
 
-        n = len(self._farming_nodes)
-
         constraints = {}
         for i, drops in enumerate(self._farming_nodes.values()):
             for material, number in drops.items():
@@ -154,19 +167,18 @@ class DropsData:
     def __init__(self, data):
         self._data = data
 
-    def drops(self, location, bonuses_or_party: Union[Items, PartySetup]=None, **kwargs):
+    def drops_with_bonus(self, location, bonuses: Items=None):
         location_drops = self._data[location]
+        if bonuses is None:
+            bonuses = Items()
+
         drops = Items()
-        if bonuses_or_party is None:
-            bonuses_or_party = Items(kwargs)
-        if isinstance(bonuses_or_party, PartySetup):
-            bonuses_or_party = bonuses_or_party.total_bonus()
-
         for item, item_drops in location_drops.items():
-            drops[item] = item_drops['initial'] + bonuses_or_party[item] * item_drops['stacks']
-
-        
+            drops[item] = item_drops['initial'] + bonuses[item] * item_drops['stacks']
         return drops
+
+    def drops_with_party(self, location, party: PartySetup):
+        return self.drops_with_bonus(location, party.total_bonus())
 
     def stacks(self, location):
         ret = {}
@@ -183,7 +195,7 @@ class DropsData:
             craft_essences = []
         if priorities is None:
             stacks = self.stacks(location)
-            priorities = list(sorted(self.drops(location),
+            priorities = list(sorted(self.drops_with_bonus(location),
                 key=lambda x: stacks[x], reverse=True))
         
         for p in reversed(priorities):
@@ -222,35 +234,39 @@ def _main():
 
     available_supports = [
         Items(food=2, water=1), 
-        Items(water=2, food=1),
+        Items(food=1, water=2),
         Items(wood=2),
         Items(stone=2),
         Items(iron=2)
     ]
-    
+
     summertime_mistresses = s = 5
     wood_ces = w = 1
 
-    locations = ['beach', 'forest', 'jungle', 'field', 'cavern']
+    locations = ['beach storm', 'forest storm', 
+        'jungle storm', 'field storm', 'cavern storm']
 
     parties = OrderedDict()
 
-    nodes = OrderedDict()
+    drops_per_run = OrderedDict()
     for loc in locations:
-        full_loc = loc + ' storm'
-        p = data.best_party(full_loc, my_servants, my_ces, 
+        p = data.best_party(loc, my_servants, my_ces, 
             available_supports)
-        nodes[loc] = data.drops(full_loc, p)
+        drops_per_run[loc] = data.drops_with_party(loc, p)
         parties[loc] = p
-    nodes['mountains'] = data.drops('mountains storm', Items(wood=3, stone=2, iron=2))
-    print(nodes)
+    parties['mountains storm'] = PartySetup(
+        servants=[Items(wood=1), Items(stone=1), Items(iron=1)]*2,
+        craft_essences=[Items(wood=1)],
+    )
+    drops_per_run['mountains storm'] = data.drops_with_bonus(
+        'mountains storm', Items(wood=3, stone=2, iron=2))
 
     event_opt = EventOptimiser()
     event_opt.set_current(Items(
         water=482,
-        food=923,
+        food=979,
         wood=40,
-        stone=498,
+        stone=641,
         iron=482
     ))
     event_opt.set_target(Items(
@@ -260,7 +276,13 @@ def _main():
         stone=2800,
         iron=1600
     ))
-    event_opt.set_farming_nodes(nodes)
+    event_opt.set_farming_nodes(drops_per_run)
+
+    for loc, party_setup in parties.items():
+        for type_ in party_setup:
+            parties[loc][type_] = \
+                [x.friendly_name() for x in parties[loc][type_]]
+
 
     runs = event_opt.optimise_runs()
     result_text = _json({
