@@ -90,7 +90,7 @@ def _main():
         'total_runs': sum(runs.values())
     }))
 
-    with open('part_1_optimised.json', 'w') as f:
+    with open('optimised_part_1_farming.json', 'w') as f:
         f.write(result_text)
 
 

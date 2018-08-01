@@ -1,0 +1,143 @@
+{
+  "party_setups": {
+    "beach storm": {
+      "servants": [
+        "+1 water",
+        "+1 water",
+        "+1 water",
+        "+1 water",
+        "+1 water"
+      ],
+      "craft_essences": [
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water"
+      ],
+      "support": [
+        "+1 food, +2 water"
+      ]
+    },
+    "forest storm": {
+      "servants": [
+        "+1 food",
+        "+1 food",
+        "+1 food",
+        "+1 food",
+        "+1 food"
+      ],
+      "craft_essences": [
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water"
+      ],
+      "support": [
+        "+2 food, +1 water"
+      ]
+    },
+    "jungle storm": {
+      "servants": [
+        "+1 wood",
+        "+1 wood",
+        "+1 wood",
+        "+1 wood",
+        "+1 wood"
+      ],
+      "craft_essences": [
+        "+1 wood",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water"
+      ],
+      "support": [
+        "+2 wood"
+      ]
+    },
+    "field storm": {
+      "servants": [
+        "+1 stone",
+        "+1 stone",
+        "+1 stone",
+        "+1 stone",
+        "+1 stone"
+      ],
+      "craft_essences": [
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water"
+      ],
+      "support": [
+        "+2 stone"
+      ]
+    },
+    "cavern storm": {
+      "servants": [
+        "+1 iron",
+        "+1 iron",
+        "+1 iron",
+        "+1 iron",
+        "+1 iron"
+      ],
+      "craft_essences": [
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water",
+        "+1 food, +1 water"
+      ],
+      "support": [
+        "+2 iron"
+      ]
+    },
+    "mountains storm": {
+      "servants": [
+        "+1 wood",
+        "+1 stone",
+        "+1 iron",
+        "+1 wood",
+        "+1 stone",
+        "+1 iron"
+      ],
+      "craft_essences": [
+        "+1 wood"
+      ],
+      "support": []
+    }
+  },
+  "current": {
+    "water": 666,
+    "food": 1567,
+    "wood": 209,
+    "stone": 1369,
+    "iron": 541
+  },
+  "total_required": {
+    "water": 1100,
+    "food": 3000,
+    "wood": 300,
+    "stone": 2740,
+    "iron": 1520
+  },
+  "remaining": {
+    "water": 434,
+    "food": 1433,
+    "wood": 91,
+    "stone": 1371,
+    "iron": 979
+  },
+  "runs": {
+    "beach storm": 0.0,
+    "forest storm": 4.0,
+    "jungle storm": 1.0,
+    "field storm": 12.0,
+    "cavern storm": 9.0,
+    "mountains storm": 0.0
+  },
+  "ap": 1040.0
+}
