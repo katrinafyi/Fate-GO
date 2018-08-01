@@ -42,10 +42,11 @@ class Items(defaultdict):
     def non_zero(self):
         return any(x for x in self.values())
 
-    def friendly_name(self):
-        bonus_strings = ['+'+str(n)+' '+x for x, n in self.items() if n != 0]
+    def friendly_name(self, is_bonus=True):
+        plus = '+' if is_bonus else ''
+        bonus_strings = [plus+str(n)+' '+x for x, n in self.items() if n != 0]
         if not bonus_strings:
-            return 'No event bonuses.'
+            return plus+'0'
         return ', '.join(bonus_strings)
 
 class PartySetup(dict):
