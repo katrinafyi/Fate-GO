@@ -42,7 +42,7 @@ class Items(defaultdict):
     def non_zero(self):
         return any(x for x in self.values())
 
-    def friendly_name(self, is_bonus=True):
+    def friendly_name(self, is_bonus=False):
         plus = '+' if is_bonus else ''
         bonus_strings = [plus+str(n)+' '+x for x, n in self.items() if n != 0]
         if not bonus_strings:

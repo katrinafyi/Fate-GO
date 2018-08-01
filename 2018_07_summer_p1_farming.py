@@ -72,7 +72,7 @@ def _main():
     for loc, party_setup in parties.items():
         for type_ in party_setup:
             parties[loc][type_] = \
-                [x.friendly_name() for x in parties[loc][type_]]
+                [x.friendly_name(True) for x in parties[loc][type_]]
 
 
     runs = event_opt.optimise_runs()
