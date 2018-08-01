@@ -1,0 +1,386 @@
+{
+  "coast beginner": {
+    "oil": {
+      "initial": 0.85,
+      "stacks": 0.85
+    },
+    "cement": {
+      "initial": 1.2,
+      "stacks": 1.2
+    }
+  },
+  "coast intermediate": {
+    "oil": {
+      "initial": 2,
+      "stacks": 2
+    },
+    "cement": {
+      "initial": 2.7,
+      "stacks": 2.7
+    }
+  },
+  "coast advanced": {
+    "oil": {
+      "initial": 3.325,
+      "stacks": 3.325
+    },
+    "cement": {
+      "initial": 8.6,
+      "stacks": 4.3
+    }
+  },
+  "coast expert": {
+    "oil": {
+      "initial": 5.550000000000001,
+      "stacks": 4.75
+    },
+    "cement": {
+      "initial": 19.8,
+      "stacks": 6.500000000000001
+    }
+  },
+  "coast 爆級": {
+    "oil": {
+      "initial": 11.4,
+      "stacks": 5.7
+    },
+    "cement": {
+      "initial": 26.1,
+      "stacks": 8.9
+    }
+  },
+  "coast 滅級": {
+    "oil": {
+      "initial": 13.6,
+      "stacks": 6.8
+    },
+    "cement": {
+      "initial": 44,
+      "stacks": 11
+    }
+  },
+  "fields beginner": {
+    "oil": {
+      "initial": 0.85,
+      "stacks": 0.85
+    },
+    "silver": {
+      "initial": 1.2,
+      "stacks": 1.2
+    }
+  },
+  "fields intermediate": {
+    "oil": {
+      "initial": 2,
+      "stacks": 2
+    },
+    "silver": {
+      "initial": 2.7,
+      "stacks": 2.7
+    }
+  },
+  "fields advanced": {
+    "oil": {
+      "initial": 3.325,
+      "stacks": 3.325
+    },
+    "silver": {
+      "initial": 8.6,
+      "stacks": 4.3
+    }
+  },
+  "fields expert": {
+    "oil": {
+      "initial": 5.550000000000001,
+      "stacks": 4.75
+    },
+    "silver": {
+      "initial": 19.8,
+      "stacks": 6.500000000000001
+    }
+  },
+  "fields 爆級": {
+    "oil": {
+      "initial": 13,
+      "stacks": 6.5
+    },
+    "silver": {
+      "initial": 26.1,
+      "stacks": 8.9
+    }
+  },
+  "fields 滅級": {
+    "oil": {
+      "initial": 16,
+      "stacks": 8
+    },
+    "silver": {
+      "initial": 44,
+      "stacks": 11
+    }
+  },
+  "underworld beginner": {
+    "cement": {
+      "initial": 0.85,
+      "stacks": 0.85
+    },
+    "gold": {
+      "initial": 1.2,
+      "stacks": 1.2
+    }
+  },
+  "underworld intermediate": {
+    "cement": {
+      "initial": 2,
+      "stacks": 2
+    },
+    "gold": {
+      "initial": 2.7,
+      "stacks": 2.7
+    }
+  },
+  "underworld advanced": {
+    "cement": {
+      "initial": 3.325,
+      "stacks": 3.325
+    },
+    "gold": {
+      "initial": 8.6,
+      "stacks": 4.3
+    }
+  },
+  "underworld expert": {
+    "cement": {
+      "initial": 5.550000000000001,
+      "stacks": 4.75
+    },
+    "gold": {
+      "initial": 19.8,
+      "stacks": 6.500000000000001
+    }
+  },
+  "underworld 爆級": {
+    "cement": {
+      "initial": 13,
+      "stacks": 6.5
+    },
+    "gold": {
+      "initial": 26.1,
+      "stacks": 8.9
+    }
+  },
+  "underworld 滅級": {
+    "cement": {
+      "initial": 16,
+      "stacks": 8
+    },
+    "gold": {
+      "initial": 44,
+      "stacks": 11
+    }
+  },
+  "contaminated beginner": {
+    "silver": {
+      "initial": 0.934,
+      "stacks": 0.934
+    },
+    "gold": {
+      "initial": 0.9329999999999999,
+      "stacks": 0.9329999999999999
+    },
+    "blue": {
+      "initial": 0.9329999999999999,
+      "stacks": 0.9329999999999999
+    }
+  },
+  "contaminated intermediate": {
+    "silver": {
+      "initial": 2.166,
+      "stacks": 2.166
+    },
+    "gold": {
+      "initial": 2.168,
+      "stacks": 2.168
+    },
+    "blue": {
+      "initial": 2.166,
+      "stacks": 2.166
+    }
+  },
+  "contaminated advanced": {
+    "silver": {
+      "initial": 7.0920000000000005,
+      "stacks": 3.5460000000000003
+    },
+    "gold": {
+      "initial": 7.0920000000000005,
+      "stacks": 3.5460000000000003
+    },
+    "blue": {
+      "initial": 7.096,
+      "stacks": 3.548
+    }
+  },
+  "contaminated expert": {
+    "silver": {
+      "initial": 17.79,
+      "stacks": 5.042
+    },
+    "gold": {
+      "initial": 17.79,
+      "stacks": 5.042
+    },
+    "blue": {
+      "initial": 17.81,
+      "stacks": 5.045999999999999
+    }
+  },
+  "contaminated 爆級": {
+    "silver": {
+      "initial": 21.06,
+      "stacks": 6.132
+    },
+    "gold": {
+      "initial": 21.06,
+      "stacks": 6.132
+    },
+    "blue": {
+      "initial": 21.08,
+      "stacks": 6.135999999999999
+    }
+  },
+  "contaminated 滅級": {
+    "silver": {
+      "initial": 25.854,
+      "stacks": 7.7299999999999995
+    },
+    "gold": {
+      "initial": 25.854,
+      "stacks": 7.7299999999999995
+    },
+    "blue": {
+      "initial": 25.892,
+      "stacks": 7.74
+    }
+  },
+  "hazard beginner": {
+    "cement": {
+      "initial": 0.85,
+      "stacks": 0.85
+    },
+    "blue": {
+      "initial": 1.2,
+      "stacks": 1.2
+    }
+  },
+  "hazard intermediate": {
+    "cement": {
+      "initial": 2.2,
+      "stacks": 2.2
+    },
+    "blue": {
+      "initial": 2.7,
+      "stacks": 2.7
+    }
+  },
+  "hazard advanced": {
+    "cement": {
+      "initial": 3.95,
+      "stacks": 3.95
+    },
+    "blue": {
+      "initial": 10.1,
+      "stacks": 5.05
+    }
+  },
+  "hazard expert": {
+    "cement": {
+      "initial": 5.2,
+      "stacks": 4.4
+    },
+    "blue": {
+      "initial": 19.049999999999997,
+      "stacks": 6.3
+    }
+  },
+  "hazard 爆級": {
+    "cement": {
+      "initial": 11.4,
+      "stacks": 5.7
+    },
+    "blue": {
+      "initial": 24.749999999999996,
+      "stacks": 8.55
+    }
+  },
+  "hazard 滅級": {
+    "cement": {
+      "initial": 16,
+      "stacks": 8
+    },
+    "blue": {
+      "initial": 43.2,
+      "stacks": 10.8
+    }
+  },
+  "city beginner": {
+    "oil": {
+      "initial": 1.2,
+      "stacks": 1.2
+    },
+    "cement": {
+      "initial": 0.85,
+      "stacks": 0.85
+    }
+  },
+  "city intermediate": {
+    "oil": {
+      "initial": 2.7,
+      "stacks": 2.7
+    },
+    "cement": {
+      "initial": 2,
+      "stacks": 2
+    }
+  },
+  "city advanced": {
+    "oil": {
+      "initial": 8.6,
+      "stacks": 4.3
+    },
+    "cement": {
+      "initial": 3.325,
+      "stacks": 3.325
+    }
+  },
+  "city expert": {
+    "oil": {
+      "initial": 19.8,
+      "stacks": 6.500000000000001
+    },
+    "cement": {
+      "initial": 5.550000000000001,
+      "stacks": 4.75
+    }
+  },
+  "city 爆級": {
+    "oil": {
+      "initial": 26.1,
+      "stacks": 8.9
+    },
+    "cement": {
+      "initial": 11.4,
+      "stacks": 5.7
+    }
+  },
+  "city 滅級": {
+    "oil": {
+      "initial": 44,
+      "stacks": 11
+    },
+    "cement": {
+      "initial": 13.6,
+      "stacks": 6.8
+    }
+  }
+}

@@ -11,6 +11,25 @@
     const translation = {
         '消耗': '',
         
+        '水泥': 'cement',
+        '石油': 'oil',
+        '水合金': 'blue',
+        '光合金': 'gold',
+        '星合金': 'silver',
+
+        '海岸': 'coast',
+        '亡魂': 'coast',
+        '廢墟': 'fields',
+        '寂靜之地': 'fields',
+        '地下工廠': 'underworld',
+        '地下世界': 'underworld',
+        '汙染地帶': 'contaminated',
+        '危險區域': 'contaminated',
+        '洞窟': 'hazard',
+        '古老洞穴': 'hazard',
+        '復興都市': 'city',
+        '烏力寶都市': 'city',
+
         '淡水': 'water',
         '食料': 'food',
         '木材': 'wood',
@@ -125,8 +144,7 @@
         }
     }
 
-    function parseSummerDevelopments() {
-        openDropDowns(['開拓計畫']);
+    function parseSummerProjects() {
         let nameRegex = /^[^\d]*(\d+ [A-C]).*$/;
         let projects = new Map();
         for (const open of getOpenBlocks()) {
@@ -149,7 +167,21 @@
         }
 
         setOutput(projects);
-        
+    }
+
+    function parsePart1Projects() {
+        openDropDowns(['開拓計畫']);
+        parseSummerProjects();
+    }
+
+    function parsePart2Projects() {
+        openDropDowns(['開拓計劃']);
+        parseSummerProjects();
+    }
+
+    function parseSummer2Farming() {
+        openDropDowns(['開拓計劃', '耀眼夏日', '埋沒物發現！', '主線關卡'], true);
+        parseOpenNodes(['cement', 'oil', 'blue', 'silver', 'gold']);
     }
 
     function setOutput(obj) {
@@ -168,14 +200,24 @@
     docFrag.appendChild(closeButton);
 
     var button = document.createElement('button');
-    button.textContent = 'Parse Summer';
+    button.textContent = 'Summer 1 Farming';
     button.addEventListener('click', parseSummerFarming);
     docFrag.appendChild(button);
 
-    var button2 = document.createElement('button');
-    button2.textContent = 'Parse Summer Developments';
-    button2.addEventListener('click', parseSummerDevelopments);
-    docFrag.appendChild(button2);
+
+    var buttons = [
+        ['Summer 1 Projects', parsePart1Projects],
+        ['Summer 2 Farming', parseSummer2Farming],
+        ['Summer 2 Projects', parsePart2Projects],
+        
+    ];
+
+    for (let i = 0; i < buttons.length; i++) {
+        var x = document.createElement('button');
+        x.textContent = buttons[i][0];
+        x.addEventListener('click', buttons[i][1]);
+        docFrag.appendChild(x);        
+    }
 
     var output = document.createElement('textarea');
     docFrag.appendChild(document.createElement('br'));
