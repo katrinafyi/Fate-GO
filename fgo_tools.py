@@ -1,9 +1,18 @@
 from collections import OrderedDict, defaultdict
 from typing import Union
+import json
 
 from ortools.linear_solver import pywraplp
 
 __all__ = ['Items', 'PartySetup', 'DropsData', 'EventOptimiser']
+
+_json_encoder = None
+
+def _json(obj):
+    global _json_encoder
+    if _json_encoder is None:
+        _json_encoder = json.encoder.JSONEncoder(indent=2)
+    return _json_encoder.encode(obj)
 
 class Items(defaultdict):
     def __init__(self, *args, **kwargs):
