@@ -26,11 +26,11 @@ def _get_farming_nodes(optimiser):
     my_ces = []
 
     available_supports = [
-        Items(food=2), 
-        Items(water=2),
-        Items(wood=2),
-        Items(stone=2),
-        Items(iron=2)
+        Items(blue=2), 
+        Items(gold=2),
+        Items(silver=2),
+        Items(oil=2),
+        Items(cement=2)
     ]
 
     def optimise_drops(locations):
@@ -82,6 +82,7 @@ def _main():
         pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
     objective = solver.Objective()
 
+    output = []
 
     constraints = {}
     var_list = []
@@ -132,14 +133,16 @@ def _main():
             print('obtained:', obtained)
             print('extra:', obtained-(required))
 
-            
-
-            print(_json({
+            output.append({
+                'projects': ', '.join(projects_to_do),
+                'required_materials': required.friendly_name(False),
                 'runs': runs,
                 'total_runs': sum(runs.values()),
                 'ap': 40*sum(runs.values()),
                 
-            }))
+            })
+
+            print(_json(output[-1]))
             
 
             solver = pywraplp.Solver('SolveIntegerProblem', 
@@ -149,6 +152,9 @@ def _main():
 
             optimiser.set_current(obtained-required)
             current_checkpoint += 1
+    
+    with open('optimised_part_2_projects.json', 'w') as f:
+        f.write(_json(output))
 
 
 if __name__ == '__main__':
