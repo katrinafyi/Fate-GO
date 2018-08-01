@@ -54,17 +54,17 @@ def _main():
 
     event_opt = EventOptimiser()
     event_opt.set_current(Items(
-        water=530,
-        food=1084,
-        wood=40,
-        stone=938,
-        iron=512
+        water=666,
+        food=1567,
+        wood=209,
+        stone=1369,
+        iron=541
     ))
     event_opt.set_target(Items(
         water=1100,
-        food=2800,
+        food=2800+200,
         wood=300,
-        stone=2800,
+        stone=2800-60,
         iron=1600-80
     ))
     event_opt.set_farming_nodes(drops_per_run)
