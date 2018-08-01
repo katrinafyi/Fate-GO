@@ -24,7 +24,7 @@ def main():
                     'stacks': round(drops[1] - drops[0], 5)
                 }
     
-    with open('currency_drops_parsed_2.json', 'w') as f:
+    with open('part_1_drops.json', 'w') as f:
         f.write(json.encoder.JSONEncoder(indent=2)
             .encode(locations)
             )
