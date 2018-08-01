@@ -10,6 +10,8 @@
 
     const translation = {
         '消耗': '',
+        '爆級': 'explosion',
+        '滅級': 'destruction',
         
         '水泥': 'cement',
         '石油': 'oil',
@@ -25,8 +27,8 @@
         '地下世界': 'underworld',
         '汙染地帶': 'contaminated',
         '危險區域': 'contaminated',
-        '洞窟': 'hazard',
-        '古老洞穴': 'hazard',
+        '洞窟': 'cave',
+        '古老洞穴': 'cave',
         '復興都市': 'city',
         '烏力寶都市': 'city',
 
