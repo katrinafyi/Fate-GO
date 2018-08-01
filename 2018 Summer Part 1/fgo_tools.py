@@ -243,11 +243,11 @@ def _main():
 
     event_opt = EventOptimiser()
     event_opt.set_current(Items(
-        water=482,
-        food=979,
+        water=530,
+        food=1084,
         wood=40,
-        stone=641,
-        iron=402
+        stone=938,
+        iron=512
     ))
     event_opt.set_target(Items(
         water=1100,
