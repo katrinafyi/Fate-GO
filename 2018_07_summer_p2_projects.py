@@ -8,33 +8,33 @@ import math
 from collections import OrderedDict, defaultdict
 
 def _set_farming_nodes(optimiser):
-    with open('part_1_drops.json') as f:
+    with open('part_2_drops.json', encoding='utf-8') as f:
         raw_data = json.decoder.JSONDecoder().decode(f.read())
     data = DropsData(raw_data)
 
     my_servants = [
-        Items(food=1), 
-        Items(water=1),
-        Items(wood=1),
-        Items(stone=1),
-        Items(iron=1)
+        Items(blue=1), 
+        Items(gold=1),
+        Items(silver=1),
+        Items(oil=1),
+        Items(cement=1)
     ]*6
 
     summertime_mistresses = s = 0
     wood_ces = w = 0
 
-    my_ces = [Items(food=1, water=1)] * s + [Items(wood=1)] * w
+    my_ces = []
 
     available_supports = [
-        Items(food=2, water=1), 
-        Items(food=1, water=2),
+        Items(food=2), 
+        Items(water=2),
         Items(wood=2),
         Items(stone=2),
         Items(iron=2)
     ]
 
-    locations = ['beach thunder', 'forest thunder', 
-        'jungle thunder', 'field thunder', 'cavern thunder']
+    locations = ['city 爆級', 'underworld 爆級', 
+        'fields 爆級', 'coast 爆級', 'hazard 爆級']
 
     parties = OrderedDict()
 
@@ -44,11 +44,11 @@ def _set_farming_nodes(optimiser):
             available_supports)
         drops_per_run[loc] = data.drops_with_party(loc, p)
         parties[loc] = p
-    parties['mountains thunder'] = PartySetup(
-        servants=[Items(wood=1), Items(stone=1), Items(iron=1)]*2,
+    parties['contaminated 爆級'] = PartySetup(
+        servants=[Items(silver=1), Items(gold=1), Items(blue=1)]*2,
     )
-    drops_per_run['mountains thunder'] = data.drops_with_bonus(
-        'mountains thunder', Items(wood=2, stone=2, iron=2))
+    drops_per_run['contaminated 爆級'] = data.drops_with_bonus(
+        'contaminated 爆級', Items(silver=2, gold=2, blue=2))
 
     optimiser.set_farming_nodes(drops_per_run)
     return drops_per_run
@@ -57,7 +57,7 @@ def _set_farming_nodes(optimiser):
 def _main():
     os.chdir(os.path.dirname(__file__) + '/2018_07_summer')
     
-    with open('part_1_projects.json') as f:
+    with open('part_2_projects.json', encoding='utf-8') as f:
         project_data = json.decoder.JSONDecoder().decode(f.read())
 
     optimiser = EventOptimiser()

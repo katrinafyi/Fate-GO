@@ -3,13 +3,9 @@ import json
 import os
 
 from fgo_tools import *
+from fgo_tools import _json
 
 def _main():
-    _json_encoder = json.encoder.JSONEncoder(indent=2)
-
-    def _json(obj):
-        return _json_encoder.encode(obj)
-
     os.chdir(os.path.dirname(__file__) + '/2018_07_summer')
     with open('part_1_drops.json') as f:
         raw_data = json.decoder.JSONDecoder().decode(f.read())
