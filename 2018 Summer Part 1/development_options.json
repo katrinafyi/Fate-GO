@@ -1,0 +1,166 @@
+{
+  "Project 1 A": {
+    "wood": 40
+  },
+  "Project 1 B": {
+    "stone": 30
+  },
+  "Project 1 C": {
+    "iron": 50
+  },
+  "Project 2 A": {
+    "wood": 50
+  },
+  "Project 2 B": {
+    "stone": 40
+  },
+  "Project 2 C": {
+    "iron": 30,
+    "stone": 20
+  },
+  "Project 3 A": {
+    "wood": 30,
+    "food": 40
+  },
+  "Project 3 B": {
+    "stone": 30,
+    "food": 60
+  },
+  "Project 3 C": {
+    "iron": 30,
+    "food": 80
+  },
+  "Project 4 A": {
+    "stone": 40,
+    "water": 180
+  },
+  "Project 4 B": {
+    "iron": 40,
+    "water": 60
+  },
+  "Project 4 C": {
+    "wood": 40,
+    "water": 120
+  },
+  "Project 5 A": {
+    "food": 100,
+    "water": 50
+  },
+  "Project 5 B": {
+    "food": 100,
+    "water": 100
+  },
+  "Project 5 C": {
+    "food": 50,
+    "water": 150
+  },
+  "Project 6 A": {
+    "food": 80,
+    "wood": 80
+  },
+  "Project 6 B": {
+    "food": 120,
+    "water": 80
+  },
+  "Project 6 C": {
+    "food": 160,
+    "wood": 80
+  },
+  "Project 7 A": {
+    "stone": 30,
+    "food": 200
+  },
+  "Project 7 B": {
+    "wood": 30,
+    "food": 150
+  },
+  "Project 7 C": {
+    "iron": 30,
+    "food": 100
+  },
+  "Project 8 A": {
+    "wood": 50
+  },
+  "Project 8 B": {
+    "stone": 70
+  },
+  "Project 8 C": {
+    "iron": 90,
+    "wood": 30
+  },
+  "Project 9 A": {
+    "wood": 50,
+    "water": 100
+  },
+  "Project 9 B": {
+    "stone": 50,
+    "water": 150
+  },
+  "Project 9 C": {
+    "iron": 50,
+    "water": 200
+  },
+  "Project 10 A": {
+    "wood": 90
+  },
+  "Project 10 B": {
+    "stone": 50,
+    "wood": 60
+  },
+  "Project 10 C": {
+    "iron": 50,
+    "wood": 120
+  },
+  "Project 11 A": {
+    "wood": 90
+  },
+  "Project 11 B": {
+    "stone": 120
+  },
+  "Project 11 C": {
+    "wood": 60,
+    "water": 120
+  },
+  "Project 12 A": {
+    "wood": 130
+  },
+  "Project 12 B": {
+    "stone": 160
+  },
+  "Project 12 C": {
+    "iron": 100
+  },
+  "Project 13 A": {
+    "stone": 40,
+    "iron": 40
+  },
+  "Project 13 B": {
+    "wood": 100,
+    "iron": 40
+  },
+  "Project 13 C": {
+    "stone": 150,
+    "wood": 150
+  },
+  "Project 14 A": {
+    "wood": 200
+  },
+  "Project 14 B": {
+    "stone": 100
+  },
+  "Project 14 C": {
+    "iron": 150
+  },
+  "Project 15 A": {
+    "stone": 100,
+    "iron": 200
+  },
+  "Project 15 B": {
+    "stone": 150,
+    "iron": 150
+  },
+  "Project 15 C": {
+    "stone": 200,
+    "iron": 100
+  }
+}
