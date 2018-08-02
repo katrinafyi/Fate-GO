@@ -52,11 +52,11 @@ class Items(defaultdict):
 class PartySetup(dict):
     def __init__(self, servants=None, craft_essences=None, support=None):
         if servants is None:
-            servants = Items()
+            servants = []
         if craft_essences is None:
-            craft_essences = Items()
+            craft_essences = []
         if support is None:
-            support = Items()
+            support = []
         self['servants'] = servants
         self['craft_essences'] = craft_essences
         self['support'] = support
@@ -169,22 +169,19 @@ class DropsData:
             ret[item] = item_data['stacks']
         return Items(ret)
 
-    def best_party(self, location, servants=None, craft_essences=None, supports=None, priorities=None):
-        if supports is None:
-            supports = []
-        if servants is None: 
-            servants = []
-        if craft_essences is None:
-            craft_essences = []
+    def best_party(self, location, available: PartySetup=None, priorities=None):
+        supports = available['support']
+        servants = available['servants']
+        craft_essences = available['craft_essences']
         if priorities is None:
             stacks = self.stacks(location)
             priorities = list(sorted(self.drops_with_bonus(location),
                 key=lambda x: stacks[x], reverse=True))
         
         for p in reversed(priorities):
-            servants.sort(key=lambda x: x[p], reverse=True)
-            supports.sort(key=lambda x: x[p], reverse=True)
-            craft_essences.sort(key=lambda x: x[p], reverse=True)
+            servants = sorted(servants, key=lambda x: x[p], reverse=True)
+            supports = sorted(supports, key=lambda x: x[p], reverse=True)
+            craft_essences = sorted(craft_essences, key=lambda x: x[p], reverse=True)
 
         out = [[], [], []]
 
@@ -198,3 +195,45 @@ class DropsData:
             craft_essences=out[1][:5],
             support=out[2][:1]
         )
+
+    def best_drops(self, location, available_parties):
+        return self.drops_with_party(location, self.best_party(
+            location, available_parties
+        ))
+
+    def optimise_drops(self, location_list, available_parties):
+        drops_per_run = OrderedDict()
+        for loc in location_list:
+            drops_per_run[loc] = self.best_drops(loc, available_parties)
+        return drops_per_run
+
+
+class SummerProjectsOptimiser:
+    def __init__(self):
+        self._servants = []
+        self._ces = []
+        self._supports = []
+
+        self._all_projects = []
+
+        self._all_farming_nodes = []
+
+        self._current_index = 0
+
+        self._current_drops_per_node = {}
+
+        self._party_overrides = {}
+    
+    def set_available(self, servants=None, craft_essences=None, supports=None):
+        if servants is not None:
+            self._servants = servants
+        if craft_essences is not None:
+            self._ces = craft_essences
+        if supports is not None:
+            self._supports = supports
+
+    def set_location_party(self, location, party=None):
+        if party is None:
+            del self._party_overrides[location]
+        else:
+            self._party_overrides[location] = party

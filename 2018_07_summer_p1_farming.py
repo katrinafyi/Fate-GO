@@ -41,8 +41,8 @@ def _main():
 
     drops_per_run = OrderedDict()
     for loc in locations:
-        p = data.best_party(loc, my_servants, my_ces, 
-            available_supports)
+        p = data.best_party(loc, PartySetup(my_servants, my_ces, 
+            available_supports))
         drops_per_run[loc] = data.drops_with_party(loc, p)
         parties[loc] = p
     parties['mountains storm'] = PartySetup(
@@ -55,16 +55,16 @@ def _main():
     event_opt = EventOptimiser()
     event_opt.set_current(Items(
         water=666,
-        food=1567,
+        food=1749,
         wood=209,
-        stone=1369,
+        stone=1710,
         iron=541
     ))
     event_opt.set_target(Items(
         water=1100,
-        food=2800+200,
+        food=2800,
         wood=300,
-        stone=2800-60,
+        stone=3000-60,
         iron=1600-80
     ))
     event_opt.set_farming_nodes(drops_per_run)

@@ -40,8 +40,8 @@ def _set_farming_nodes(optimiser):
 
     drops_per_run = OrderedDict()
     for loc in locations:
-        p = data.best_party(loc, my_servants, my_ces, 
-            available_supports)
+        p = data.best_party(loc, PartySetup(my_servants, my_ces, 
+            available_supports))
         drops_per_run[loc] = data.drops_with_party(loc, p)
         parties[loc] = p
     parties['mountains thunder'] = PartySetup(

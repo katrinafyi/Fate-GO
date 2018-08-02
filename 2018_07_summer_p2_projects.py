@@ -26,32 +26,25 @@ def _get_farming_nodes(optimiser):
     my_ces = []
 
     available_supports = [
-        Items(blue=2), 
-        Items(gold=2),
-        Items(silver=2),
-        Items(oil=2),
-        Items(cement=2)
+        Items(blue=1), 
+        Items(gold=1),
+        Items(silver=1),
+        Items(oil=1),
+        Items(cement=1)
     ]
 
-    def optimise_drops(locations):
-        drops_per_run = OrderedDict()
-        for loc in locations:
-            p = data.best_party(loc, my_servants, my_ces, 
-                available_supports)
-            drops_per_run[loc] = data.drops_with_party(loc, p)
-        return drops_per_run
+    available = PartySetup(my_servants, my_ces, available_supports)
 
-    
-    last_drops = optimise_drops(['underworld explosion', 
+    last_drops = data.optimise_drops(['underworld explosion', 
         'fields explosion', 'coast explosion', 'cave explosion',
-        'city explosion'])
+        'city explosion'], available)
     last_drops['contaminated explosion'] = data.drops_with_bonus(
         'contaminated explosion', Items(silver=2, gold=2, blue=2)
     )
 
     return [
-        optimise_drops(['underworld advanced', 
-            'fields advanced', 'coast advanced', 'cave advanced']),
+        data.optimise_drops(['underworld advanced', 
+            'fields advanced', 'coast advanced', 'cave advanced'], available),
         last_drops
     ]
 
