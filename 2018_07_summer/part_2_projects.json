@@ -1,146 +1,278 @@
-{
-  "Project 1 A": {
-    "cement": 20,
-    "silver": 40
-  },
-  "Project 1 B": {
-    "cement": 20,
-    "blue": 20
-  },
-  "Project 1 C": {
-    "cement": 20,
-    "gold": 30
-  },
-  "Project 2 A": {
-    "oil": 70,
-    "gold": 30
-  },
-  "Project 2 B": {
-    "oil": 30,
-    "blue": 30
-  },
-  "Project 2 C": {
-    "oil": 50,
-    "silver": 30
-  },
-  "Project 3 A": {
-    "cement": 70,
-    "gold": 40
-  },
-  "Project 3 B": {
-    "cement": 50,
-    "silver": 40
-  },
-  "Project 3 C": {
-    "cement": 30,
-    "blue": 40
-  },
-  "Project 4 A": {
-    "cement": 40,
-    "silver": 60
-  },
-  "Project 4 B": {
-    "cement": 40,
-    "silver": 40
-  },
-  "Project 4 C": {
-    "cement": 40,
-    "silver": 80
-  },
-  "Project 5 A": {
-    "cement": 60,
-    "gold": 20
-  },
-  "Project 5 B": {
-    "cement": 80,
-    "silver": 60
-  },
-  "Project 5 C": {
-    "cement": 40,
-    "blue": 40
-  },
-  "Project 6 A": {
-    "silver": 60,
-    "blue": 100
-  },
-  "Project 6 B": {
-    "cement": 80,
-    "silver": 60
-  },
-  "Project 6 C": {
-    "silver": 60,
-    "gold": 60
-  },
-  "Project 7 A": {
-    "cement": 60,
-    "gold": 70
-  },
-  "Project 7 B": {
-    "cement": 90,
-    "blue": 70
-  },
-  "Project 7 C": {
-    "cement": 30,
-    "silver": 70
-  },
-  "Project 8 A": {
-    "oil": 60,
-    "gold": 30
-  },
-  "Project 8 B": {
-    "oil": 60,
-    "gold": 60
-  },
-  "Project 8 C": {
-    "oil": 60,
-    "gold": 90
-  },
-  "Project 9 A": {
-    "oil": 90,
-    "gold": 100
-  },
-  "Project 9 B": {
-    "oil": 60,
-    "silver": 100
-  },
-  "Project 9 C": {
-    "oil": 120,
-    "blue": 100
-  },
-  "Project 10 A": {
-    "cement": 80,
-    "silver": 100
-  },
-  "Project 10 B": {
-    "oil": 100,
-    "blue": 100
-  },
-  "Project 10 C": {
-    "cement": 100,
-    "gold": 80
-  },
-  "Project 11 A": {
-    "silver": 100,
-    "gold": 100
-  },
-  "Project 11 B": {
-    "silver": 100,
-    "blue": 100
-  },
-  "Project 11 C": {
-    "gold": 100,
-    "blue": 100
-  },
-  "Project 12 A": {
-    "gold": 150,
-    "blue": 200
-  },
-  "Project 12 B": {
-    "oil": 200,
-    "silver": 200
-  },
-  "Project 12 C": {
-    "cement": 200,
-    "gold": 150
-  }
-}
+[
+  [
+    {
+      "name": "Project 1 A",
+      "cost": {
+        "cement": 20,
+        "silver": 40
+      }
+    },
+    {
+      "name": "Project 1 B",
+      "cost": {
+        "cement": 20,
+        "blue": 20
+      }
+    },
+    {
+      "name": "Project 1 C",
+      "cost": {
+        "cement": 20,
+        "gold": 30
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 2 A",
+      "cost": {
+        "oil": 70,
+        "gold": 30
+      }
+    },
+    {
+      "name": "Project 2 B",
+      "cost": {
+        "oil": 30,
+        "blue": 30
+      }
+    },
+    {
+      "name": "Project 2 C",
+      "cost": {
+        "oil": 50,
+        "silver": 30
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 3 A",
+      "cost": {
+        "cement": 70,
+        "gold": 40
+      }
+    },
+    {
+      "name": "Project 3 B",
+      "cost": {
+        "cement": 50,
+        "silver": 40
+      }
+    },
+    {
+      "name": "Project 3 C",
+      "cost": {
+        "cement": 30,
+        "blue": 40
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 4 A",
+      "cost": {
+        "cement": 40,
+        "silver": 60
+      }
+    },
+    {
+      "name": "Project 4 B",
+      "cost": {
+        "cement": 40,
+        "silver": 40
+      }
+    },
+    {
+      "name": "Project 4 C",
+      "cost": {
+        "cement": 40,
+        "silver": 80
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 5 A",
+      "cost": {
+        "cement": 60,
+        "gold": 20
+      }
+    },
+    {
+      "name": "Project 5 B",
+      "cost": {
+        "cement": 80,
+        "silver": 60
+      }
+    },
+    {
+      "name": "Project 5 C",
+      "cost": {
+        "cement": 40,
+        "blue": 40
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 6 A",
+      "cost": {
+        "silver": 60,
+        "blue": 100
+      }
+    },
+    {
+      "name": "Project 6 B",
+      "cost": {
+        "cement": 80,
+        "silver": 60
+      }
+    },
+    {
+      "name": "Project 6 C",
+      "cost": {
+        "silver": 60,
+        "gold": 60
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 7 A",
+      "cost": {
+        "cement": 60,
+        "gold": 70
+      }
+    },
+    {
+      "name": "Project 7 B",
+      "cost": {
+        "cement": 90,
+        "blue": 70
+      }
+    },
+    {
+      "name": "Project 7 C",
+      "cost": {
+        "cement": 30,
+        "silver": 70
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 8 A",
+      "cost": {
+        "oil": 60,
+        "gold": 30
+      }
+    },
+    {
+      "name": "Project 8 B",
+      "cost": {
+        "oil": 60,
+        "gold": 60
+      }
+    },
+    {
+      "name": "Project 8 C",
+      "cost": {
+        "oil": 60,
+        "gold": 90
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 9 A",
+      "cost": {
+        "oil": 90,
+        "gold": 100
+      }
+    },
+    {
+      "name": "Project 9 B",
+      "cost": {
+        "oil": 60,
+        "silver": 100
+      }
+    },
+    {
+      "name": "Project 9 C",
+      "cost": {
+        "oil": 120,
+        "blue": 100
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 10 A",
+      "cost": {
+        "cement": 80,
+        "silver": 100
+      }
+    },
+    {
+      "name": "Project 10 B",
+      "cost": {
+        "oil": 100,
+        "blue": 100
+      }
+    },
+    {
+      "name": "Project 10 C",
+      "cost": {
+        "cement": 100,
+        "gold": 80
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 11 A",
+      "cost": {
+        "silver": 100,
+        "gold": 100
+      }
+    },
+    {
+      "name": "Project 11 B",
+      "cost": {
+        "silver": 100,
+        "blue": 100
+      }
+    },
+    {
+      "name": "Project 11 C",
+      "cost": {
+        "gold": 100,
+        "blue": 100
+      }
+    }
+  ],
+  [
+    {
+      "name": "Project 12 A",
+      "cost": {
+        "gold": 150,
+        "blue": 200
+      }
+    },
+    {
+      "name": "Project 12 B",
+      "cost": {
+        "oil": 200,
+        "silver": 200
+      }
+    },
+    {
+      "name": "Project 12 C",
+      "cost": {
+        "cement": 200,
+        "gold": 150
+      }
+    }
+  ]
+]

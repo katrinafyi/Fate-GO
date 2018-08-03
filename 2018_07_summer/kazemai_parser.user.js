@@ -147,24 +147,36 @@
     }
 
     function parseSummerProjects() {
-        let nameRegex = /^[^\d]*(\d+ [A-C]).*$/;
-        let projects = new Map();
+        let nameRegex = /^[^\d]*(\d+)\s+([A-C]).*$/;
+        let projects = [];
+        let currentProjectGroup = [];
+        let currentProjectNum = '1';
         for (const open of getOpenBlocks()) {
             for (let i = 0; i < open.children.length; i++) {
                 const projectTable = open.children[i];
                 let tbody = projectTable.querySelector('tbody');
                 let header = tbody.firstElementChild.textContent;
-                let name = 'Project '+nameRegex.exec(header)[1];
+                let match = nameRegex.exec(header);
+                let name = 'Project '+match[1]+' '+match[2];
 
                 let materials = _t(tbody.children[1].firstElementChild.textContent).split('/');
                 let materialCounts = tbody.children[2].firstElementChild.textContent.split('/');
 
                 let data = new Map();
+                data['name'] = name;
+                data['cost'] = {};
                 for (let i = 0; i < materials.length; i++) {
-                    data[materials[i]] = parseInt(materialCounts[i]);
+                    data['cost'][materials[i]] = parseInt(materialCounts[i]);
                 }
-                projects[name] = data;
+                if (currentProjectNum !== match[1]) {
+                    projects.push(currentProjectGroup);
+                    currentProjectGroup = [];
+                    currentProjectNum = match[1];
+                }
+                currentProjectGroup.push(data);
             }
+            if (currentProjectGroup.length !== 0)
+                projects.push(currentProjectGroup);
             break;
         }
 
