@@ -4,7 +4,8 @@ import json
 
 from ortools.linear_solver import pywraplp
 
-__all__ = ['Items', 'PartySetup', 'DropsData', 'EventOptimiser']
+__all__ = ['Items', 'PartySetup', 'DropsData', 'EventOptimiser',
+    'SummerProjectsOptimiser']
 
 _json_encoder = None
 
@@ -210,27 +211,10 @@ class DropsData:
 
 class SummerProjectsOptimiser:
     def __init__(self, chunked=False):
-
         self._chunked = chunked
-
         self._available = PartySetup()
-
         self._all_projects = []
-
         self._all_farming_nodes = []
-
-        self._current_drops_per_node = {}
-
-        self._party_overrides = {}
-    
-    def set_available(self, available):
-        self._available = available
-
-    def set_location_party(self, location, party=None):
-        if party is None:
-            del self._party_overrides[location]
-        else:
-            self._party_overrides[location] = party
 
     def set_projects(self, projects: OrderedDict):
         if self._chunked:
@@ -254,44 +238,49 @@ class SummerProjectsOptimiser:
             ))
         return result
 
+    @staticmethod
+    def calculate_item_weights(nodes):
+        weights = defaultdict(lambda: 0)
+        for loc, drops in nodes.items():
+            for drop, num in drops.items():
+                import math
+                weights[drop] += num**2
+        return weights
+
     def _optimise_one_chunk(self, chunk, nodes):
         event_opt = self._event_opt
         event_opt.set_farming_nodes(nodes)
         
         # total items from running each node once.
-        mats_per_iteration = optimiser.total_items({
-            l: 1 for l in nodes
-        })
+        mats_per_iteration = self.calculate_item_weights(nodes)
+        print(mats_per_iteration)
 
         solver = pywraplp.Solver('SolveIntegerProblem', 
             pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
         objective = solver.Objective()
 
-        constraints = {}
-        var_list = []
-        for i, (project_name, project_required) in enumerate(chunk.items()):
-            proj_num = int(project_name.split(' ')[1])
-            if proj_num not in constraints:
-                constraints[proj_num] = solver.Constraint(1, 1)
+        project_list = []
+        for i, project_group in enumerate(chunk):
+            constraint = solver.Constraint(1, 1)
+            for j, project in enumerate(project_group):
+                var = solver.IntVar(0, 1, project['name'])
+                constraint.SetCoefficient(var, 1)
 
-            var = solver.IntVar(0, 1, project_name)
-            constraints[proj_num].SetCoefficient(var, 1)
+                coeff = 0
+                for mat, num in project['cost'].items():
+                    coeff += num / (mats_per_iteration[mat])
+                objective.SetCoefficient(var, coeff)
 
-            coeff = 0
-            for mat, num in project_required.items():
-                coeff += num / (mats_per_iteration[mat])
-            objective.SetCoefficient(var, coeff)
-
-            var_list.append(var)
+                project_list.append([project, var])
 
         objective.SetMinimization()
         assert solver.Solve() == solver.OPTIMAL
 
-        projects_to_do = [var.name() for var in var_list if var.solution_value()]
+        projects_to_do = [proj for proj, var in project_list if var.solution_value()]
 
         required = Items()
         for proj in projects_to_do:
-            for mat, num in project_data[proj].items():
+            for mat, num in proj['cost'].items():
                 required[mat] += num
 
         event_opt.set_target(required)
@@ -301,7 +290,7 @@ class SummerProjectsOptimiser:
         event_opt.set_current(current_items-required)
 
         return {
-            'projects': projects_to_do,
+            'projects': [p['name'] for p in projects_to_do],
             'required_materials': required,
             'runs': runs,
             'total_runs': sum(runs.values()),
