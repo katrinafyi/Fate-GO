@@ -35,14 +35,6 @@ class SummerProjectsOptimiser2:
             ))
         return result if self._chunked else result[0]
 
-    @staticmethod
-    def calculate_item_weights(nodes):
-        weights = defaultdict(lambda: 0)
-        for loc, drops in nodes.items():
-            for drop, num in drops.items():
-                weights[drop] += num
-        return weights
-
     def _constrain_projects(self, input_vars):
         output = []
         start = 0
