@@ -1,6 +1,7 @@
 from fgo_tools import *
 from fgo_tools import _json
-from ortools.linear_solver import pywraplp
+from fgo_tools_experimental import SummerProjectsOptimiser2
+
 
 import os
 import json
@@ -36,7 +37,7 @@ def _main():
     
     available = PartySetup(my_servants, my_ces, available_supports)
 
-    optimiser = SummerProjectsOptimiser(chunked=True)
+    optimiser = SummerProjectsOptimiser2(chunked=True)
     
     farming_nodes_1 = data.optimise_drops(
         ['underworld advanced', 'fields advanced', 'coast advanced', 'cave advanced'],
@@ -58,6 +59,7 @@ def _main():
     output = optimiser.optimise_projects()
     
     for chunk in output:
+        if chunk is None: continue
         chunk['projects'] = ', '.join(chunk['projects'])
         chunk['required_materials'] = chunk['required_materials'].friendly_name()
 
