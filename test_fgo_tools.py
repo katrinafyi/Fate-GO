@@ -127,6 +127,6 @@ class TestProjOpt2:
         ])
         optimiser.set_farming_nodes([farming_nodes_1, farming_nodes_2])
         output = optimiser.optimise_projects()
-        
+        print(json.encoder.JSONEncoder(indent=2).encode(output))
         assert output[0]['total_runs'] + output[1]['total_runs'] == 25
 
