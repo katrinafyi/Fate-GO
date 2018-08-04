@@ -1,2 +1,3 @@
 ortools>=6.8.5452
 pytest>=3.7.1
+platypus-opt>=1.0.3
