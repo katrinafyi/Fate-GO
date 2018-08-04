@@ -70,6 +70,6 @@ def _main(n=100):
 if __name__ == '__main__':
     if len(sys.argv) > 1:
         print('Executing', sys.argv[1], 'iterations.')
-        _main(sys.argv[1])
+        _main(int(sys.argv[1]))
     else:
         _main()
