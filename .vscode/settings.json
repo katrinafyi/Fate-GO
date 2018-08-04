@@ -2,4 +2,5 @@
     "python.unitTest.unittestEnabled": false,
     "python.unitTest.pyTestEnabled": true,
     "python.unitTest.nosetestsEnabled": false,
+    "python.linting.enabled": true,
 }
