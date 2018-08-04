@@ -2,6 +2,7 @@ from fgo_tools import *
 from fgo_tools_experimental import SummerProjectsOptimiser2
 import pytest
 import os
+import json
 
 @pytest.fixture
 def drops_data():
