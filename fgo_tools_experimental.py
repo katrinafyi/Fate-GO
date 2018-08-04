@@ -23,7 +23,7 @@ class SummerProjectsOptimiser2:
         else:
             self._all_farming_nodes = [nodes]
 
-    def optimise_projects(self):
+    def optimise_projects(self, iterations=100):
         self._event_opt = EventOptimiser()
         result = []
         for i, chunk in enumerate(self._all_projects):
@@ -31,7 +31,8 @@ class SummerProjectsOptimiser2:
             self._chunk_projects = [proj for group in chunk for proj in group]
             result.append(self._optimise_one_chunk(
                 chunk,
-                self._all_farming_nodes[i]
+                self._all_farming_nodes[i],
+                iterations
             ))
         return result if self._chunked else result[0]
 
@@ -65,7 +66,7 @@ class SummerProjectsOptimiser2:
                 required += self._chunk_projects[i]['cost']
         return required
 
-    def _optimise_one_chunk(self, chunk, nodes):
+    def _optimise_one_chunk(self, chunk, nodes, iterations=100):
         event_opt = self._event_opt
         event_opt.set_farming_nodes(nodes)
 
@@ -79,7 +80,7 @@ class SummerProjectsOptimiser2:
         problem.directions[:] = platypus.Problem.MINIMIZE
 
         algorithm = platypus.NSGAII(problem)
-        algorithm.run(20000)
+        algorithm.run(iterations)
 
         possible_results = [s for s in algorithm.result if s.feasible]
         possible_results.sort(key=lambda x: self._calculate_required(x.variables).magnitude(), reverse=True)
