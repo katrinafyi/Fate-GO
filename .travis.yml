@@ -6,4 +6,5 @@ install:
   - pip install -r requirements.txt
 # command to run tests
 script:
+  - python ./2018_07_summer_p2_projects.py 100000
   - pytest -vv -s # or py.test for Python versions 3.5 and below

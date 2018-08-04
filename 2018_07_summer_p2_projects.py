@@ -2,13 +2,13 @@ from fgo_tools import *
 from fgo_tools import _json
 from fgo_tools_experimental import SummerProjectsOptimiser2
 
-
+import sys
 import os
 import json
 import math
 from collections import OrderedDict, defaultdict
 
-def _main():
+def _main(n=100):
     os.chdir(os.path.dirname(__file__) + '/2018_07_summer')
     
     with open('part_2_drops.json', encoding='utf-8') as f:
@@ -56,7 +56,7 @@ def _main():
         project_data[5:]
     ])
     optimiser.set_farming_nodes([farming_nodes_1, farming_nodes_2])
-    output = optimiser.optimise_projects()
+    output = optimiser.optimise_projects(n)
     
     for chunk in output:
         if chunk is None: continue
@@ -68,4 +68,8 @@ def _main():
 
 
 if __name__ == '__main__':
-    _main()
+    if len(sys.argv) > 1:
+        print('Executing', sys.argv[1], 'iterations.')
+        _main(sys.argv[1])
+    else:
+        _main()
