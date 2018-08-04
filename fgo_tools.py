@@ -1,5 +1,7 @@
 from collections import OrderedDict, defaultdict
 from typing import Union
+from itertools import count
+
 import json
 import math
 
@@ -43,6 +45,9 @@ class Items(defaultdict):
 
     def non_zero(self):
         return any(x for x in self.values())
+
+    def magnitude(self):
+        return math.sqrt(sum(x**2 for x in self.values()))
 
     def friendly_name(self, is_bonus=False):
         plus = '+' if is_bonus else ''
@@ -172,38 +177,46 @@ class EventOptimiser:
         return d
 
     def _do_optimise(self, use_int=True):
-        if use_int:
-            solver = pywraplp.Solver('IntegerSolver', 
-                pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING) 
-        else:
-            solver = pywraplp.Solver('LinearSolver',
-                pywraplp.Solver.GLOP_LINEAR_PROGRAMMING)
+        for n in count():
+            if use_int:
+                solver = pywraplp.Solver('IntegerSolver', 
+                    pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING) 
+            else:
+                solver = pywraplp.Solver('LinearSolver',
+                    pywraplp.Solver.GLOP_LINEAR_PROGRAMMING)
 
-        make_var = solver.IntVar if use_int else solver.NumVar
+            make_var = solver.IntVar if use_int else solver.NumVar
 
-        node_vars = []
-        for loc in self._farming_nodes:
-            node_vars.append(make_var(0, solver.infinity(), loc))
+            num_constraint = solver.Constraint(n, n)
 
-        constraints = {}
-        for i, drops in enumerate(self._farming_nodes.values()):
-            for material, number in drops.items():
-                if material not in constraints:
-                    constraints[material] = solver.Constraint(
-                        self._remaining[material], solver.infinity())
-                    
-                constraints[material].SetCoefficient(node_vars[i], number)
+            objective = solver.Objective()
+            node_vars = []
+            constraints = {}
+            for i, (loc, drops) in enumerate(self._farming_nodes.items()):
+                sq_sum = 0
+                this_var = make_var(0, solver.infinity(), loc)
+                node_vars.append(this_var)
+                for material, number in drops.items():
+                    if material not in constraints:
+                        constraints[material] = solver.Constraint(
+                            self._remaining[material], solver.infinity())
+                        
+                    constraints[material].SetCoefficient(this_var, number)
+                    sq_sum += number**2
+                objective.SetCoefficient(this_var, math.sqrt(sq_sum))
+                num_constraint.SetCoefficient(this_var, 1)
 
-        objective = solver.Objective()
-        for var in node_vars:
-            objective.SetCoefficient(var, 1)
-        objective.SetMinimization()
 
-        status = solver.Solve()
-        assert status == pywraplp.Solver.OPTIMAL
-        assert solver.VerifySolution(1e-7, True)
-        
-        return [var.solution_value() for var in node_vars]
+            objective.SetMaximization()
+
+            status = solver.Solve()
+            if status == pywraplp.Solver.OPTIMAL:
+                assert solver.VerifySolution(1e-7, True)
+                return [var.solution_value() for var in node_vars]
+            elif status == pywraplp.Solver.INFEASIBLE:
+                continue
+            else:
+                raise Exception('Unexpected error.')
 
     def optimise_runs(self):
         result = self._do_optimise()
@@ -277,12 +290,14 @@ class SummerProjectsOptimiser:
                 constraint.SetCoefficient(var, 1)
 
                 event_opt.set_target(project['cost'])
-                runs_required = event_opt._do_optimise(use_int=False)
+                runs_required = event_opt._do_optimise(use_int=True)
 
                 coeff = sum(runs_required)
                 objective.SetCoefficient(var, coeff)
 
                 project_list.append([project, var])
+
+        existing_mats = solver.IntVar(1, 1)
 
         objective.SetMinimization()
         assert solver.Solve() == solver.OPTIMAL
