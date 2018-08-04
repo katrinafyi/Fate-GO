@@ -79,7 +79,7 @@ class SummerProjectsOptimiser2:
         problem.directions[:] = platypus.Problem.MINIMIZE
 
         algorithm = platypus.NSGAII(problem)
-        algorithm.run(10000)
+        algorithm.run(20000)
 
         possible_results = [s for s in algorithm.result if s.feasible]
         possible_results.sort(key=lambda x: self._calculate_required(x.variables).magnitude(), reverse=True)
