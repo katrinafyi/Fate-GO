@@ -63,8 +63,11 @@ def _main(n=100):
         chunk['projects'] = ', '.join(chunk['projects'])
         chunk['required_materials'] = chunk['required_materials'].friendly_name()
 
+    print(output)
+    
     with open('optimised_part_2_projects.json', 'w') as f:
         f.write(_json(output))
+    
 
 
 if __name__ == '__main__':
