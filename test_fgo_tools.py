@@ -78,13 +78,6 @@ def proj_opt_2():
 
 class TestProjOpt2:
 
-    def test_new_proj_opt_constrain(self, proj_opt_2):
-        assert proj_opt_2._constrain_projects([1, 0, 1, 5, 0, 1]) == [7, 1]
-
-    def _test_problem_function(self, proj_opt_2: SummerProjectsOptimiser2):
-        a = proj_opt_2._problem_function([1]*6)
-        assert a
-
     def test_optimiser_2(self):
         os.chdir(os.path.dirname(__file__) + '/2018_07_summer')
     
