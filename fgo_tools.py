@@ -1,6 +1,7 @@
 from collections import OrderedDict, defaultdict
 from typing import Union
 import json
+import math
 
 from ortools.linear_solver import pywraplp
 
@@ -108,13 +109,19 @@ class EventOptimiser:
             d[key] = array[i]
         return d
 
-    def _do_optimise(self):
-        solver = pywraplp.Solver('SolveIntegerProblem', 
-            pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
+    def _do_optimise(self, use_int=True):
+        if use_int:
+            solver = pywraplp.Solver('IntegerSolver', 
+                pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING) 
+        else:
+            solver = pywraplp.Solver('LinearSolver',
+                pywraplp.Solver.GLOP_LINEAR_PROGRAMMING)
+
+        make_var = solver.IntVar if use_int else solver.NumVar
 
         node_vars = []
         for loc in self._farming_nodes:
-            node_vars.append(solver.IntVar(0, solver.infinity(), loc))
+            node_vars.append(make_var(0, solver.infinity(), loc))
 
         constraints = {}
         for i, drops in enumerate(self._farming_nodes.values()):
@@ -236,7 +243,7 @@ class SummerProjectsOptimiser:
                 chunk,
                 self._all_farming_nodes[i]
             ))
-        return result
+        return result if self._chunked else result[0]
 
     @staticmethod
     def calculate_item_weights(nodes):
@@ -244,16 +251,18 @@ class SummerProjectsOptimiser:
         for loc, drops in nodes.items():
             for drop, num in drops.items():
                 import math
-                weights[drop] += num**2
+                weights[drop] += num
         return weights
 
     def _optimise_one_chunk(self, chunk, nodes):
         event_opt = self._event_opt
         event_opt.set_farming_nodes(nodes)
+
+        temp_current = event_opt._current
+        event_opt.set_current(Items())
         
         # total items from running each node once.
         mats_per_iteration = self.calculate_item_weights(nodes)
-        print(mats_per_iteration)
 
         solver = pywraplp.Solver('SolveIntegerProblem', 
             pywraplp.Solver.CBC_MIXED_INTEGER_PROGRAMMING)
@@ -266,9 +275,10 @@ class SummerProjectsOptimiser:
                 var = solver.IntVar(0, 1, project['name'])
                 constraint.SetCoefficient(var, 1)
 
-                coeff = 0
-                for mat, num in project['cost'].items():
-                    coeff += num / (mats_per_iteration[mat])
+                event_opt.set_target(project['cost'])
+                runs_required = event_opt._do_optimise(use_int=False)
+
+                coeff = sum(runs_required)
                 objective.SetCoefficient(var, coeff)
 
                 project_list.append([project, var])
@@ -283,6 +293,7 @@ class SummerProjectsOptimiser:
             for mat, num in proj['cost'].items():
                 required[mat] += num
 
+        event_opt.set_current(temp_current)
         event_opt.set_target(required)
         runs = event_opt.optimise_runs()
 
