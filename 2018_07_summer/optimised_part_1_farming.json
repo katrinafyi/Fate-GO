@@ -111,33 +111,33 @@
     }
   },
   "current": {
-    "iron": 472,
-    "stone": 1938,
-    "wood": 209,
-    "food": 2301,
-    "water": 873
+    "iron": 1433,
+    "stone": 3076,
+    "wood": 522,
+    "food": 1926,
+    "water": 770
   },
   "total_required": {
-    "iron": 1220,
-    "stone": 2640,
-    "wood": 300,
-    "food": 3000,
-    "water": 1100
+    "iron": 1420,
+    "stone": 2840,
+    "wood": 400,
+    "food": 1800,
+    "water": 500
   },
   "remaining": {
-    "iron": 748,
-    "stone": 702,
-    "wood": 91,
-    "food": 699,
-    "water": 227
+    "iron": 0,
+    "stone": 0,
+    "wood": 0,
+    "food": 0,
+    "water": 0
   },
   "runs": {
     "beach storm": 0.0,
-    "forest storm": 2.0,
-    "jungle storm": 1.0,
-    "field storm": 6.0,
-    "cavern storm": 7.0,
+    "forest storm": 0.0,
+    "jungle storm": 0.0,
+    "field storm": 0.0,
+    "cavern storm": 0.0,
     "mountains storm": 0.0
   },
-  "ap": 640.0
+  "ap": 0.0
 }
