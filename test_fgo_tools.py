@@ -79,6 +79,7 @@ def proj_opt_2():
 
 class TestProjOpt2:
 
+    @pytest.mark.skip(reason='Excessive resource usage required to pass.')
     def test_optimiser_2(self):
         os.chdir(os.path.dirname(__file__) + '/2018_07_summer')
     
