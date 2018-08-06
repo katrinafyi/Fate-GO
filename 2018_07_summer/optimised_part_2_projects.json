@@ -2,25 +2,26 @@
   {
     "projects": [
       "Project 1 A",
-      "Project 2 B",
+      "Project 2 A",
       "Project 3 C",
-      "Project 4 B",
-      "Project 5 B"
+      "Project 4 A",
+      "Project 5 C"
     ],
     "required_materials": {
-      "cement": 170,
-      "silver": 140,
-      "oil": 30,
-      "blue": 70
+      "cement": 130,
+      "silver": 100,
+      "oil": 70,
+      "gold": 30,
+      "blue": 80
     },
     "runs": {
-      "underworld advanced": 0.0,
-      "fields advanced": 5.0,
-      "coast advanced": 5.0,
+      "underworld advanced": 1.0,
+      "fields advanced": 3.0,
+      "coast advanced": 4.0,
       "cave advanced": 2.0
     },
-    "total_runs": 12.0,
-    "ap": 480.0
+    "total_runs": 10.0,
+    "ap": 400.0
   },
   {
     "projects": [
@@ -29,25 +30,25 @@
       "Project 8 A",
       "Project 9 B",
       "Project 10 A",
-      "Project 11 B",
+      "Project 11 A",
       "Project 12 A"
     ],
     "required_materials": {
       "silver": 430,
-      "gold": 240,
+      "gold": 340,
       "cement": 110,
       "oil": 120,
-      "blue": 300
+      "blue": 200
     },
     "runs": {
-      "underworld explosion": 1.0,
+      "underworld explosion": 2.0,
       "fields explosion": 3.0,
       "coast explosion": 1.0,
-      "cave explosion": 2.0,
-      "city explosion": 1.0,
-      "contaminated explosion": 5.0
+      "cave explosion": 0.0,
+      "city explosion": 0.0,
+      "contaminated explosion": 6.0
     },
-    "total_runs": 13.0,
-    "ap": 520.0
+    "total_runs": 12.0,
+    "ap": 480.0
   }
 ]

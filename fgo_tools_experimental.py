@@ -23,8 +23,10 @@ class SummerProjectsOptimiser2:
         else:
             self._all_farming_nodes = [nodes]
 
-    def optimise_projects(self, iterations=100):
+    def optimise_projects(self, initial_materials=None, iterations=100):
         self._event_opt = EventOptimiser()
+        if initial_materials is not None:
+            self._event_opt.set_current(initial_materials)
         result = []
         for i, chunk in enumerate(self._all_projects):
             self._current_chunk = chunk
