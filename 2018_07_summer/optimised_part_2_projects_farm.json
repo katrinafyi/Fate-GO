@@ -1,0 +1,91 @@
+{
+  "party_setups": {
+    "underworld advanced": {
+      "servants": [
+        "+1 gold",
+        "+1 gold",
+        "+1 gold",
+        "+1 gold",
+        "+1 gold"
+      ],
+      "craft_essences": [],
+      "support": [
+        "+1 gold"
+      ]
+    },
+    "fields advanced": {
+      "servants": [
+        "+1 silver",
+        "+1 silver",
+        "+1 silver",
+        "+1 silver",
+        "+1 silver"
+      ],
+      "craft_essences": [],
+      "support": [
+        "+1 silver"
+      ]
+    },
+    "coast advanced": {
+      "servants": [
+        "+1 cement",
+        "+1 cement",
+        "+1 cement",
+        "+1 cement",
+        "+1 cement"
+      ],
+      "craft_essences": [],
+      "support": [
+        "+1 cement"
+      ]
+    },
+    "cave advanced": {
+      "servants": [
+        "+1 blue",
+        "+1 blue",
+        "+1 blue",
+        "+1 blue",
+        "+1 blue"
+      ],
+      "craft_essences": [],
+      "support": [
+        "+1 blue"
+      ]
+    }
+  },
+  "current": {
+    "blue": 45,
+    "gold": 0,
+    "silver": 45,
+    "cement": 44,
+    "oil": 120
+  },
+  "total_required": {
+    "cement": 130,
+    "silver": 100,
+    "oil": 70,
+    "gold": 30,
+    "blue": 80
+  },
+  "remaining": {
+    "cement": 86,
+    "silver": 55,
+    "oil": 0,
+    "gold": 30,
+    "blue": 35
+  },
+  "projects": [
+    "Project 1 A",
+    "Project 2 A",
+    "Project 3 C",
+    "Project 4 A",
+    "Project 5 C"
+  ],
+  "runs": {
+    "underworld advanced": 1.0,
+    "fields advanced": 2.0,
+    "coast advanced": 3.0,
+    "cave advanced": 1.0
+  },
+  "ap": 210.0
+}
