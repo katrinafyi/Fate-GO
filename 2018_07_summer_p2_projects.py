@@ -52,11 +52,16 @@ def _main(n=100):
     )
 
     optimiser.set_projects([
-        project_data[:5],
         project_data[5:]
     ])
-    optimiser.set_farming_nodes([farming_nodes_1, farming_nodes_2])
-    output = optimiser.optimise_projects(Items(oil=120), n)
+    optimiser.set_farming_nodes([ farming_nodes_2])
+    output = optimiser.optimise_projects(Items(
+        blue=167,
+        gold=437,
+        silver=364,
+        cement=426,
+        oil=133
+    ), n)
     
     print(_json(output))
     

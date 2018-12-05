@@ -51,10 +51,10 @@ def _main(n=100):
 
     all_farming_nodes = [farming_nodes_1, farming_nodes_2]
 
-    SELECTED_INDEX = 0
+    SELECTED_INDEX = 1
 
     these_nodes = all_farming_nodes[SELECTED_INDEX]
-    required = Items(project_data[SELECTED_INDEX]['required_materials'])
+    required = Items(project_data[0]['required_materials'])
     
     event_opt = EventOptimiser()
 
@@ -63,7 +63,7 @@ def _main(n=100):
         parties[loc] = data.best_party(loc, available)
 
     if SELECTED_INDEX == 1:
-        parties['contaminated explosion'] = PartySetup(servants=Items(silver=2, gold=2, blue=2))
+        parties['contaminated explosion'] = PartySetup(servants=[Items(silver=2, gold=2, blue=2)])
     for loc, party_setup in parties.items():
         for type_ in party_setup:
             parties[loc][type_] = \
@@ -72,11 +72,11 @@ def _main(n=100):
     AP = 30 if SELECTED_INDEX == 0 else 40
 
     event_opt.set_current(Items(
-        blue=45,
-        gold=0,
-        silver=45,
-        cement=44,
-        oil=120
+        blue=167,
+        gold=437,
+        silver=364,
+        cement=426,
+        oil=133
     ))
     event_opt.set_target(required + Items(
         blue=0,
@@ -93,12 +93,12 @@ def _main(n=100):
         'current': event_opt._current,
         'total_required': event_opt._target,
         'remaining': event_opt._remaining,
-        'projects': project_data[SELECTED_INDEX]['projects'],
+        'projects': project_data[0]['projects'],
         'runs': runs,
         'ap': AP*sum(runs.values()),
     })
     print(_json({
-        'projects': project_data[SELECTED_INDEX]['projects'],
+        'projects': project_data[0]['projects'],
         'runs': runs,
         'STAGE': SELECTED_INDEX,
         'ap': AP*sum(runs.values()),

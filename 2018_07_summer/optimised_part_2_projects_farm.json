@@ -1,6 +1,6 @@
 {
   "party_setups": {
-    "underworld advanced": {
+    "underworld explosion": {
       "servants": [
         "+1 gold",
         "+1 gold",
@@ -13,7 +13,7 @@
         "+1 gold"
       ]
     },
-    "fields advanced": {
+    "fields explosion": {
       "servants": [
         "+1 silver",
         "+1 silver",
@@ -26,7 +26,7 @@
         "+1 silver"
       ]
     },
-    "coast advanced": {
+    "coast explosion": {
       "servants": [
         "+1 cement",
         "+1 cement",
@@ -39,7 +39,7 @@
         "+1 cement"
       ]
     },
-    "cave advanced": {
+    "cave explosion": {
       "servants": [
         "+1 blue",
         "+1 blue",
@@ -51,41 +51,65 @@
       "support": [
         "+1 blue"
       ]
+    },
+    "city explosion": {
+      "servants": [
+        "+1 oil",
+        "+1 oil",
+        "+1 oil",
+        "+1 oil",
+        "+1 oil"
+      ],
+      "craft_essences": [],
+      "support": [
+        "+1 oil"
+      ]
+    },
+    "contaminated explosion": {
+      "servants": [
+        "+2 silver, +2 gold, +2 blue"
+      ],
+      "craft_essences": [],
+      "support": []
     }
   },
   "current": {
-    "blue": 45,
-    "gold": 0,
-    "silver": 45,
-    "cement": 44,
-    "oil": 120
+    "blue": 167,
+    "gold": 437,
+    "silver": 364,
+    "cement": 426,
+    "oil": 133
   },
   "total_required": {
-    "cement": 130,
-    "silver": 100,
-    "oil": 70,
-    "gold": 30,
-    "blue": 80
+    "silver": 260,
+    "gold": 410,
+    "cement": 340,
+    "oil": 120,
+    "blue": 100
   },
   "remaining": {
-    "cement": 86,
-    "silver": 55,
+    "silver": 0,
+    "gold": 0,
+    "cement": 0,
     "oil": 0,
-    "gold": 30,
-    "blue": 35
+    "blue": 0
   },
   "projects": [
-    "Project 1 A",
-    "Project 2 A",
-    "Project 3 C",
-    "Project 4 A",
-    "Project 5 C"
+    "Project 6 C",
+    "Project 7 A",
+    "Project 8 A",
+    "Project 9 B",
+    "Project 10 A",
+    "Project 11 C",
+    "Project 12 C"
   ],
   "runs": {
-    "underworld advanced": 1.0,
-    "fields advanced": 2.0,
-    "coast advanced": 3.0,
-    "cave advanced": 1.0
+    "underworld explosion": 0.0,
+    "fields explosion": 0.0,
+    "coast explosion": 0.0,
+    "cave explosion": 0.0,
+    "city explosion": 0.0,
+    "contaminated explosion": 0.0
   },
-  "ap": 210.0
+  "ap": 0.0
 }

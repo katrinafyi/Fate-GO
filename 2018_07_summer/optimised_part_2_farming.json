@@ -1,0 +1,126 @@
+{
+  "party_setups": {
+    "underworld destruction": {
+      "servants": [
+        "+1 gold",
+        "+1 gold",
+        "+1 gold",
+        "+1 gold",
+        "+1 cement"
+      ],
+      "craft_essences": [
+        "+1 oil, +1 cement"
+      ],
+      "support": [
+        "+2 gold"
+      ]
+    },
+    "fields destruction": {
+      "servants": [
+        "+1 silver",
+        "+1 silver",
+        "+1 silver",
+        "+1 silver",
+        "+1 oil"
+      ],
+      "craft_essences": [
+        "+1 silver",
+        "+1 silver",
+        "+1 oil, +1 cement"
+      ],
+      "support": [
+        "+2 silver"
+      ]
+    },
+    "coast destruction": {
+      "servants": [
+        "+1 cement",
+        "+1 cement",
+        "+1 cement",
+        "+1 cement",
+        "+1 oil"
+      ],
+      "craft_essences": [
+        "+1 oil, +1 cement"
+      ],
+      "support": [
+        "+1 oil, +2 cement"
+      ]
+    },
+    "cave destruction": {
+      "servants": [
+        "+1 blue",
+        "+1 blue",
+        "+1 blue",
+        "+1 blue",
+        "+1 cement"
+      ],
+      "craft_essences": [
+        "+1 oil, +1 cement"
+      ],
+      "support": [
+        "+2 blue"
+      ]
+    },
+    "city destruction": {
+      "servants": [
+        "+1 oil",
+        "+1 oil",
+        "+1 oil",
+        "+1 oil",
+        "+1 cement"
+      ],
+      "craft_essences": [
+        "+1 oil, +1 cement"
+      ],
+      "support": [
+        "+2 oil, +1 cement"
+      ]
+    },
+    "contaminated destruction": {
+      "servants": [
+        "+1 silver",
+        "+1 gold",
+        "+1 blue",
+        "+1 silver",
+        "+1 gold",
+        "+1 blue"
+      ],
+      "craft_essences": [
+        "+1 silver",
+        "+1 silver"
+      ],
+      "support": []
+    }
+  },
+  "current": {
+    "blue": 587,
+    "gold": 879,
+    "silver": 740,
+    "cement": 1554,
+    "oil": 615
+  },
+  "total_required": {
+    "blue": 1700,
+    "gold": 700,
+    "silver": 1150,
+    "cement": 3200,
+    "oil": 1500
+  },
+  "remaining": {
+    "blue": 1113,
+    "gold": 0,
+    "silver": 410,
+    "cement": 1646,
+    "oil": 885
+  },
+  "runs": {
+    "underworld destruction": 0.0,
+    "fields destruction": 3.0,
+    "coast destruction": 10.0,
+    "cave destruction": 10.0,
+    "city destruction": 4.0,
+    "contaminated destruction": 1.0
+  },
+  "ap": 1120.0
+}
