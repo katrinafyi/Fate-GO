@@ -304,5 +304,3 @@ if __name__ == '__main__':
         times.append(run_snowflakes()/60)
         print('Previous run:', times[-1], 'minutes')
         print(f'Average of {len(times)} runs:', sum(times)/len(times), 'minutes')
-
-        
